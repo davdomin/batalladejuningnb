@@ -296,10 +296,11 @@ class CodeIgniter
 		// if the page has been cached.
 		$cacheConfig = new Cache();
 		$response    = $this->displayCache($cacheConfig);
+		
 		if ($response instanceof ResponseInterface)
 		{
 			if ($returnResponse)
-			{
+			{				
 				return $response;
 			}
 
@@ -308,7 +309,7 @@ class CodeIgniter
 		}
 
 		try
-		{
+		{			
 			return $this->handleRequest($routes, $cacheConfig, $returnResponse);
 		}
 		catch (RedirectException $e)

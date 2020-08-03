@@ -1,32 +1,24 @@
 <?php
-class Blog_model extends CI_Model {
+namespace App\Models;
 
-        public $title;
-        public $content;
-        public $date;
+use CodeIgniter\Model;
 
-        public function get_last_ten_entries()
-        {
-                $query = $this->db->get('entries', 10);
-                return $query->result();
-        }
+class UserModel extends Model
+{
+    protected $table      = 'users';
+    protected $primaryKey = 'id';
 
-        public function insert_entry()
-        {
-                $this->title    = $_POST['title']; // please read the below note
-                $this->content  = $_POST['content'];
-                $this->date     = time();
+    protected $returnType     = 'array';
+    protected $useSoftDeletes = true;
 
-                $this->db->insert('entries', $this);
-        }
+    protected $allowedFields = ['name', 'email'];
 
-        public function update_entry()
-        {
-                $this->title    = $_POST['title'];
-                $this->content  = $_POST['content'];
-                $this->date     = time();
+    protected $useTimestamps = false;
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+    protected $deletedField  = 'deleted_at';
 
-                $this->db->update('entries', $this, array('id' => $_POST['id']));
-        }
-
+    protected $validationRules    = [];
+    protected $validationMessages = [];
+    protected $skipValidation     = false;
 }
