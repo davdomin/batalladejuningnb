@@ -17,6 +17,7 @@
     </head>
 
     <body>
+        <h1>Batalla de Junin GNB</h1>
         <div class="card  white darken-1">
             <span class="card-title">Iniciar sesión</span>        
             <div class="row">
@@ -51,7 +52,20 @@
                 password: password
                 })
                 .done(function( data ) {
-                    console.log( "Data Loaded: " + data );
+                  data = $.parseJSON(data);
+                    if (!data) {
+                        M.toast({html: 'Acceso denegado', classes: 'rounded'});
+                        return;
+                    }                     
+                    M.toast({html: 'Bienvenido', classes: 'rounded'});
+                    $.post( "User/getOpcionesMenu", {cod_usuario :data.id}).done(
+                      function (data) {
+                        console.log(data);
+                      }  
+                    );
+                    
+                    
+                    
             });            
         }
         
