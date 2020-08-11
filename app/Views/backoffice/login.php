@@ -12,6 +12,7 @@
       
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
       <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.common.min.css" />
       <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" />
     </head>
@@ -58,13 +59,7 @@
                         return;
                     }                     
                     M.toast({html: 'Bienvenido', classes: 'rounded'});
-                    $.post( "User/getOpcionesMenu", {cod_usuario :data.id}).done(
-                      function (data) {
-                        console.log(data);
-                      }  
-                    );
-                    
-                    
+                    location.href = 'Home/index';                    
                     
             });            
         }
