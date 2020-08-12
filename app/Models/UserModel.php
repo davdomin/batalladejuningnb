@@ -23,26 +23,12 @@ class UserModel extends Model
     protected $skipValidation     = false;
     
 
-    public function getOpciones()
+    public function getOpciones($cod_padre)
     {
-        		$sql ="with recursive cte (id, nombre, destino, cod_padre) as (
-					select     id,
-							   nombre,
-                               destino,
-							   cod_padre
-					from       menu
-					where      cod_padre =0
-					union all
-					select     p.id,
-							   p.nombre,
-                               p.destino,
-							   p.cod_padre
-					from       menu p
-					inner join cte
-							on p.cod_padre = cte.id
-				  )
-				  select * from cte;";
-
+        
+        $sql ="SELECT t.id,t.nombre,t.controller,t.metodo,t.cod_padre,
+                exists(select 1 from menu t1 where t1.cod_padre = t.id) tiene_hijos
+                FROM menu t WHERE cod_padre = $cod_padre";                
         $result = $this->db->query($sql);        
         return  $result->getResult();
     }

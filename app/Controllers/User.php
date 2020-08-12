@@ -39,9 +39,10 @@ class User extends BaseController
 	
 	public function getOpcionesMenu()
 	{
+		$cod_padre  = $_POST['cod_padre'];
 		$userModel = new UserModel($db);
 		header('Content-Type: application/json');
-		$opciones = $userModel->getOpciones();		
+		$opciones = $userModel->getOpciones($cod_padre);		
 		return json_encode($opciones);
 	
 	}
