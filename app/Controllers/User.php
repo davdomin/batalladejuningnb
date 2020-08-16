@@ -13,8 +13,8 @@ class User extends BaseController
 		$session = session();
 		$userModel = new UserModel($db);
 		$usuario  = $_POST['usuario'];
-		$password = $_POST['password'];
-		$user = $userModel->where('deleted', 0)->where('email',$usuario)->where('password',$password)
+		$password = $_POST['clave'];
+		$user = $userModel->where('deleted', 0)->where('email',$usuario)->where('clave',$password)
                   ->first();
 		if ($user) {
 			$session->cod_usuario = $user->id;
