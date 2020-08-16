@@ -29,9 +29,10 @@ class User extends BaseController
 		$nombre = $_POST['nombre'];
 		$data = [
 		  'name' => $nombre,
-		  'password' =>$password,
+		  'clave' =>$password,
           'email'    => $email
 		];
+		//var_dump($data);die();
 		header('Content-Type: application/json');
 		return json_encode($userModel->insert($data));
 		
@@ -47,7 +48,8 @@ class User extends BaseController
 	
 	}
 	public function crear()	{
-		return view('backoffice/users');
+	
+	return view('backoffice/users');
 	}
 	//--------------------------------------------------------------------
 }

@@ -1,8 +1,17 @@
 <div>
-    Nombres <input id="txtNombre"><br>
-    Email <input id="txtEmail"><br>
-    Password <input id="txtPassword" type="password"><br>
-    <button id="btnGuardar">Guardar</button>
+     <div class="form-group">
+          <label for="txtNombre">Nombres :</label>
+        <input id="txtNombre" class="form-control">
+     </div>
+     <div class="form-group">
+        <label for="txtEmail">Email :</label>
+        <input id="txtEmail" type='email' class="form-control">
+     </div>    
+    <div class="form-group">
+        <label for="txtPassword">Password :</label>
+        <input id="txtPassword" type="password" class="form-control">
+    </div>    
+    <button id="btnGuardar" class='btn-primary'>Guardar</button>
 </div>
 
 <script>
@@ -19,8 +28,8 @@ function onClick() {
         });        
     }
     $(function() {
-        $("#btnGuardar").kendoButton({
-            click: onClick
+        $("#btnGuardar").kendoButton({            
+            click: onClick            
         });
     });
 
