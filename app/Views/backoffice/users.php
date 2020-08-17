@@ -17,14 +17,13 @@
 <script>
 function onClick() {
     $.post( "../User/guardar", {
-    nombre: $("#txtNombre").val(),
+    nombre: $("#txtNombre").val(),    
     email: $("#txtEmail").val(),
     password: $("#txtPassword").val()
     })
     .done(function( data ) {
       data = $.parseJSON(data);
-        M.toast({html: 'Guardado', classes: 'rounded'});        
-        
+        mensaje('Clientes','Usuario registrado');        
         });        
     }
     $(function() {

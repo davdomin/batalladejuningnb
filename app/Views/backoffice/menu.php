@@ -20,6 +20,7 @@
        </div>
       </nav>
       <div class="container">
+       <div id="dialog"></div>
          <div class="form-group">
            <div id="pagina"></div>
          </div>
@@ -66,8 +67,28 @@
       }, "json");
    }
    
+   function mensaje(titulo, contenido) {
+    var dialog = $('#dialog');           
+       dialog.kendoDialog({
+          width: "450px",
+          title: titulo,
+          closable: false,
+          modal: false,
+          content: contenido,
+          actions: [
+              //{ text: 'Skip this version' },
+              //{ text: 'Remind me later' },
+              { text: 'Aceptar', primary: true }
+          ],
+         //close: function (e) {  undo.fadeIn();}
+      });
+       dialog.data("kendoDialog").open();
+   }
+   
     $(document).ready(function(){     
-     cargarOpciones();
+       cargarOpciones();
+       
+        
     });
     
 
