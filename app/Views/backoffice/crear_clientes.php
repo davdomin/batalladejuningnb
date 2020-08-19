@@ -33,11 +33,12 @@
 
 <script>
 function onClick() {    
-    $.post( "../User/guardar", {
+    $.post( "../Clientes/guardar", {
+    cedula: $("#txtCedula").val(),
     nombre: $("#txtNombre").val(),
-    apellido: $("#txtApellido").val(),
+    apellido: $("#txtApellidos").val(),
     direccion: $("#txtDireccion").val(),
-    telefobo: $("#txtTelefono").val(),
+    telefono: $("#txtTelefono").val(),
     email: $("#txtEmail").val(),
     password: $("#txtPassword").val()
     })
