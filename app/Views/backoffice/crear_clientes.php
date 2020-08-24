@@ -33,7 +33,7 @@
 
 <script>
 function onClick() {    
-    $.post( "../Clientes/guardar", {
+    $.post( "../Clientes/guardar", { 
     cedula: $("#txtCedula").val(),
     nombre: $("#txtNombre").val(),
     apellido: $("#txtApellidos").val(),
