@@ -100,7 +100,8 @@
 #for_login { 
  opacity:1.0 !important;
  background-color: rgba(255,0,0, .5) !important;
- z-index:1;  
+ z-index:1;
+ color:black;
 }
 
     </style>
