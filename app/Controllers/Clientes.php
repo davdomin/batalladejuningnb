@@ -32,11 +32,11 @@ class Clientes extends BaseController
           'email'    => $email
 		];
 		$cod_usuario = $userModel->insert($data);
+		if ($cod_usuario != 0) return false;
 		$data = [
 		  'cedula' => $cedula,
 		  'nombres' => $nombre,
           'apellidos' => $apellido,
-		  'email' => $email,
 		  'direccion' => $direccion,
 		  'telefono' => $telefono,
 		  'cod_usuario' => $cod_usuario

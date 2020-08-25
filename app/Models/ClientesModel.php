@@ -10,7 +10,7 @@ class ClientesModel extends Model
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
-    protected $allowedFields = ['cedula', 'nombres','apellidos', 'direccion','telefono','cod_usuario','email'];
+    protected $allowedFields = ['cedula','cod_usuario','nombres','apellidos', 'direccion','telefono'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'created_at';
@@ -19,5 +19,5 @@ class ClientesModel extends Model
 
     protected $validationRules    = [];
     protected $validationMessages = [];
-    protected $skipValidation     = true;
+    protected $skipValidation     = false;
 }
