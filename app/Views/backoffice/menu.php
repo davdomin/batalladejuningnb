@@ -22,7 +22,11 @@
       <div class="container">
        <div id="dialog"></div>
          <div class="form-group">
-           <div id="pagina"></div>
+           <div id="pagina" >
+            <div class="container-fluid">
+             <img src="../img/background.jpg" class="img-fluid">
+            </div>            
+           </div>
          </div>
       </div>
 
@@ -95,4 +99,5 @@
 </script>
  
 </body>
+
   </html>

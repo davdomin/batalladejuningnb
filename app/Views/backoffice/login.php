@@ -18,8 +18,9 @@
     </head>
 
     <body>
+          <div class="bg">
         <h1>Batalla de Junin GNB</h1>
-        <div class="card  white darken-1">
+        <div class="card  white darken-1" id="for_login">
             <span class="card-title">Iniciar sesión</span>        
             <div class="row">
                 <div class="row">
@@ -42,7 +43,8 @@
             </div>
         </div>
       <!--JavaScript at end of body for optimized loading-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      </div>
     </body>
     <script>
         function onClick(data) {
@@ -72,5 +74,35 @@
 
         });
     </script>
+    <style>
+      body, html {
+  height: 100%;
+}
+
+.bg {
+  /* The image used */
+  
+ bottom:5px;
+ right:5px;
+ background: rgba(64, 64, 64, 0.5);
+ background-image: url("img/background.jpg");
+ z-index:99;
+ color:white;
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#for_login { 
+ opacity:1.0 !important;
+ background-color: rgba(255,0,0, .5) !important;
+ z-index:1;  
+}
+
+    </style>
   </html>
         
