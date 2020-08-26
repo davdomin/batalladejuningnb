@@ -15,7 +15,7 @@
 <body>
      <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#">BJGNB</a>
-       <div class="nav-wrapper">
+       <div class="nav-wrappers">
           <ul id="lista_menu" class='navbar-nav mr-auto'></ul>
        </div>
       </nav>
@@ -93,11 +93,19 @@
        cargarOpciones();
        
         
-    });
-    
-
+    });   
 </script>
+<style> 
+.navbar-custom { 
+    background-color: red; 
+}
+.navbar-custom .navbar-brand, 
+.navbar-custom .navbar-text { 
+  color: green; 
+ } 
+</style>
  
 </body>
+
 
   </html>

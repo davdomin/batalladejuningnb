@@ -19,7 +19,9 @@
 
     <body>
           <div class="bg">
+            <img src="img/inicial.jpg" />
         <h1>Batalla de Junin GNB</h1>
+        
         <div class="card  white darken-1" id="for_login">
             <span class="card-title">Iniciar sesión</span>        
             <div class="row">
@@ -84,8 +86,7 @@
   
  bottom:5px;
  right:5px;
- background: rgba(64, 64, 64, 0.5);
- background-image: url("img/background.jpg");
+ background: rgba(0, 0, 0, 1); 
  z-index:99;
  color:white;
 
@@ -99,9 +100,9 @@
 }
 #for_login { 
  opacity:1.0 !important;
- background-color: rgba(255,0,0, .5) !important;
+ background-color: rgba(255,0,0, 1) !important;
  z-index:1;
- color:black;
+ color:white;
 }
 
     </style>
