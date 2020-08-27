@@ -24,6 +24,9 @@ class Clientes extends BaseController
 		$apellido = $_POST['apellido'];
 		$direccion = $_POST['direccion'];
 		$telefono = $_POST['telefono'];
+		$cod_sexo = $_POST['cod_sexo'];
+		$cod_grupo = $_POST['cod_grupo'];
+		
 		
 		$nombreCompleto = $nombre .' '.$apellido;
 		$data = [
@@ -32,14 +35,16 @@ class Clientes extends BaseController
           'email'    => $email
 		];
 		$cod_usuario = $userModel->insert($data);
-		if ($cod_usuario != 0) return false;
+		if ($cod_usuario == 0) return false;
 		$data = [
 		  'cedula' => $cedula,
 		  'nombres' => $nombre,
           'apellidos' => $apellido,
 		  'direccion' => $direccion,
 		  'telefono' => $telefono,
-		  'cod_usuario' => $cod_usuario
+		  'cod_usuario' => $cod_usuario,
+		  'cod_datos_sexo' => $cod_sexo,
+		  'cod_datos_grupo' => $cod_grupo,
 		];		
 		return json_encode($clientesModel->insert($data));		
 	}

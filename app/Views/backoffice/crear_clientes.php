@@ -20,6 +20,14 @@
         <input id="txtTelefono" type="" class="form-control">
     </div>
     <div class="form-group">
+        <label for="cmbSexo">Sexo :</label>
+        <input id="cmbSexo" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="cmbGrupo">Grupo Sanguineo :</label>
+        <input id="cmbGrupo" class="form-control">
+    </div>
+    <div class="form-group">
         <label for="txtEmail">Correo Electrónico:</label>
         <input id="txtEmail" type="email" class="form-control">
     </div>
@@ -34,26 +42,36 @@
 <script>
 function onClick() {    
     $.post( "../Clientes/guardar", { 
-    cedula: $("#txtCedula").val(),
-    nombre: $("#txtNombre").val(),
-    apellido: $("#txtApellidos").val(),
-    direccion: $("#txtDireccion").val(),
-    telefono: $("#txtTelefono").val(),
-    email: $("#txtEmail").val(),
-    password: $("#txtPassword").val()
-    })
-    .done(function( data ) {
-      data = $.parseJSON(data);
+        cedula:    $("#txtCedula").val(),
+        nombre:    $("#txtNombre").val(),
+        apellido:  $("#txtApellidos").val(),
+        direccion: $("#txtDireccion").val(),
+        telefono:  $("#txtTelefono").val(),
+        email:     $("#txtEmail").val(),
+        password:  $("#txtPassword").val(),
+        cod_sexo:  $("#cmbSexo").data("kendoComboBox").value(),
+        cod_grupo:  $("#cmbGrupo").data("kendoComboBox").value(),
+    }).done(function( data ) {
+        data = $.parseJSON(data);
         mensaje('Clientes','Cliente registrado');
         
-        });        
-    }
-    $(function() {
-        $("#btnGuardar").kendoButton({
-            click: onClick
-        });
-        
+    });        
+}
+$(function() {
+    $("#btnGuardar").kendoButton({
+        click: onClick
+    });
+    $("#cmbSexo").kendoComboBox({
+        dataSource: getDataSource(C_SEXO),
+        dataTextField: "nombre",
+        dataValueField: "id"
     });
 
+    $("#cmbGrupo").kendoComboBox({
+        dataSource: getDataSource(C_GRUPO_SANGUINEO),
+        dataTextField: "nombre",
+        dataValueField: "id"
+    });
     
+});
 </script>
