@@ -5,7 +5,13 @@ use App\Models\DatosModel;
 class Home extends BaseController
 {
 	public function index()	{
-		return view('backoffice/menu');
+		$session = session();
+		$vista = "backoffice/menu";				
+		if ($session->has("cod_usuario"))
+			$vista ="backoffice/login";
+
+		return view($vista);
+
 	}
 
 	public function getDataSource() {

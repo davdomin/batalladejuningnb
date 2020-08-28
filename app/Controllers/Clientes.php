@@ -10,7 +10,18 @@ class Clientes extends BaseController
 	{
 		return view('backoffice/crear_clientes');
 	}
+	public function depositar()
+	{
+		$session = session();
+		$data = array(
+    		'cod_usuario' => $session->get("cod_usuario"),
+		);		
+		return view('depositar',$data);
+	}
 
+	public function guardar_deposito()	{
+
+	}
 	
 	public function guardar()	{
 		header('Content-Type: application/json');
@@ -48,6 +59,4 @@ class Clientes extends BaseController
 		];		
 		return json_encode($clientesModel->insert($data));		
 	}
-
-
 }

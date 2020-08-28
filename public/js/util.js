@@ -1,5 +1,6 @@
 const C_SEXO = 1;
 const C_GRUPO_SANGUINEO = 2;
+const C_BANCO = 3;
 
 function getDataSource(cod_clasificacion) {
 

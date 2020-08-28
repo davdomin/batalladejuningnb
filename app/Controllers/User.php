@@ -6,7 +6,6 @@ class User extends BaseController
 {
 	public function index()
 	{
-
 		return view('backoffice/login');
 	}
 	public function sesion() {
@@ -14,13 +13,12 @@ class User extends BaseController
 		$userModel = new UserModel($db);
 		$usuario  = $_POST['usuario'];
 		$password = $_POST['password'];
-		$user = $userModel->where('deleted', 0)->where('email',$usuario)->where('clave',$password)
-                  ->first();
+		$user = $userModel->where('deleted', 0)->where('email',$usuario)->where('clave',$password)->first();
 		if ($user) {
-			$session->cod_usuario = $user->id;
+			$session->set(['cod_usuario' => $user["id"]]);
 		}
 		header('Content-Type: application/json');
-	    echo json_encode($user);
+	    return json_encode($user);
 	}
 	public function guardar()	{
 		$userModel = new UserModel($db);
@@ -28,28 +26,24 @@ class User extends BaseController
 		$password = $_POST['password'];
 		$nombre = $_POST['nombre'];
 		$data = [
-		  'name' => $nombre,
-		  'clave' =>$password,
-          'email'    => $email
-		];
-		//var_dump($data);die();
+		  'name'  => $nombre,
+		  'clave' => $password,
+          'email' => $email
+		];		
 		header('Content-Type: application/json');
-		return json_encode($userModel->insert($data));
-		
+		return json_encode($userModel->insert($data));		
 	}
 	
 	public function getOpcionesMenu()
 	{
-		$cod_padre  = $_POST['cod_padre'];
+		$cod_padre = $_POST['cod_padre'];
 		$userModel = new UserModel($db);
 		header('Content-Type: application/json');
 		$opciones = $userModel->getOpciones($cod_padre);		
-		return json_encode($opciones);
-	
+		return json_encode($opciones);	
 	}
-	public function crear()	{
-	
-	return view('backoffice/users');
+	public function crear()	{	
+		return view('backoffice/users');
 	}
 	//--------------------------------------------------------------------
 }
