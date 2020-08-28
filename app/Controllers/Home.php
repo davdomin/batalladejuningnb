@@ -8,7 +8,7 @@ class Home extends BaseController
 		$session = session();
 		$vista = "backoffice/menu";				
 		if ($session->has("cod_usuario"))
-			$vista ="backoffice/login";
+			$vista ="backoffice/menu";
 
 		return view($vista);
 
