@@ -6,7 +6,7 @@ class Home extends BaseController
 {
 	public function index()	{
 		$session = session();
-		$vista = "backoffice/menu";				
+		$vista = "backoffice/login";				
 		if ($session->has("cod_usuario"))
 			$vista ="backoffice/menu";
 
