@@ -7,17 +7,13 @@ class AbonosModel extends Model
 {
     protected $table      = 'abonos';
     protected $primaryKey = 'id';
+    protected $returnType    = 'array';
+    protected $allowedFields = ['cod_cliente','cod_datos_banco','monto','referencia', 'observaciones','fecha_deposito'];
+    public function __construct(){
+        parent::__construct();        
+    }
+    function getEstadoPendiente() {
+        return 14;
+    }
 
-    protected $returnType     = 'array';
-    protected $useSoftDeletes = true;
-    protected $allowedFields = ['cod_cliente','cod_datos_banco','monto','referencia', 'observaciones'];
-
-    protected $useTimestamps = false;
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
-
-    protected $validationRules    = [];
-    protected $validationMessages = [];
-    protected $skipValidation     = false;
 }

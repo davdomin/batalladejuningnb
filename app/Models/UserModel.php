@@ -10,7 +10,6 @@ class UserModel extends Model
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
-
     protected $allowedFields = ['name', 'email','clave'];
 
     protected $useTimestamps = false;
@@ -31,5 +30,9 @@ class UserModel extends Model
                 FROM menu t WHERE cod_padre = $cod_padre";                
         $result = $this->db->query($sql);        
         return  $result->getResult();
+    }
+    public function getById($id) {
+        return $this->where('id',$id)->first();
+
     }
 }

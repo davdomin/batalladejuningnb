@@ -28,14 +28,14 @@
         <input id="cmbGrupo" class="form-control">
     </div>
     <fieldset>
-        <div class="form-group">
-            <label for="txtEmail">Correo Electrónico:</label>
-            <input id="txtEmail" type="email" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="txtPassword">Contraseña:</label>
-            <input id="txtPassword" type="password" class="form-control">
-        </div>
+            <div class="form-group">
+                <label for="txtEmail">Correo Electrónico:</label>
+                <input id="txtEmail" type="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="txtPassword">Contraseña:</label>
+                <input id="txtPassword" type="password" class="form-control">
+            </div>
     </fieldset>
     <button id="btnGuardar" class='btn-primary'>Guardar</button>
 </div>
