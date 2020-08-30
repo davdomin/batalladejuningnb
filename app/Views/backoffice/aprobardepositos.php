@@ -2,12 +2,29 @@
  	<div id="grid_depositos"></div>
  </div>
  <script type="text/javascript">
-function aprobar(cod_abono) {
-    console.log(cod_abono);
-}
-function rechazar(cod_abono) {
-    console.log(cod_abono);
-}
+    var  estadoAprobado = 15;
+    var  estadoRechazado = 16;
+
+    function cambiarEstado(cod_abono, cod_estado) {
+
+        $.post( "../AdminController/cambiarEstadoAbono", {
+                cod_abono: cod_abono,
+                cod_estado: cod_estado
+                })
+                .done(function( data ) {
+                    mensaje('Aprobacion','Proceso completado');
+                    $("#grid_depositos").data("kendoGrid").dataSource.read();
+                    
+            });        
+       
+    }
+
+    function aprobar(cod_abono) {
+        cambiarEstado(cod_abono, estadoAprobado);
+    }
+    function rechazar(cod_abono) {
+        cambiarEstado(cod_abono, estadoRechazado);
+    }
 $(function() {	
 	$("#grid_depositos").kendoGrid({
           columns: [          
