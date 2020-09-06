@@ -1,16 +1,23 @@
 <?php namespace App\Controllers;
 
 use App\Models\DatosModel;
+use App\Models\AbonosModel;
 
 class Home extends BaseController
 {
 	public function index()	{
 		$session = session();
+		$abonosModel = new AbonosModel();
+		$data = array(
+    		'total_acumulado' => $abonosModel->getTotalAbonos(),
+		);	
+
 		$vista = "backoffice/login";				
 		if ($session->has("cod_usuario"))
+
 			$vista ="backoffice/menu";
 
-		return view($vista);
+		return view($vista,$data);
 
 	}
 

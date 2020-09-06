@@ -32,3 +32,29 @@ function formatDate(date) {
 
     return [year, month, day].join('-');
 }
+
+   function mensaje(titulo, contenido) {
+    var dialog = $('#dialog');           
+       dialog.kendoDialog({
+          width: "450px",
+          title: titulo,
+          closable: false,
+          modal: false,
+          content: contenido,
+          actions: [
+              //{ text: 'Skip this version' },
+              //{ text: 'Remind me later' },
+              { text: 'Aceptar', primary: true }
+          ],
+         //close: function (e) {  undo.fadeIn();}
+      });
+       dialog.data("kendoDialog").open();
+   }   
+
+   function mensaje_html(titulo,contenido)  {
+    $("#mensaje_html").css("visibility",'all');    
+    $("#msj_html").html (
+            "<strong>Success!</strong> Indicates a successful or positive action."
+        );
+    setTimeout(function(){ $("#mensaje_html").css("visibility",'none'); }, 2000);
+   }

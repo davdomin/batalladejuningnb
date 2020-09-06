@@ -6,12 +6,11 @@ use App\Models\AbonosModel;
 
 class Clientes extends BaseController
 {
-	public function crear()
-	{
+	public function crear()	{
 		return view('backoffice/crear_clientes');
 	}
-	public function depositar()
-	{
+
+	public function depositar() {
 		$session = session();
 		$cod_usuario = $session->get("cod_usuario");
 		$userModel = new UserModel($db);
@@ -19,16 +18,50 @@ class Clientes extends BaseController
 
 		$user = $userModel->getById($cod_usuario);
     	$cliente  =  $clientesModel->getByUser($cod_usuario);
+    	
 		$data = array(
     		'nombre_usuario' => $user['name'],
     		'cod_usuario' => $cod_usuario,
-    		'cod_cliente' =>$cliente["id"],
+    		'cod_cliente' => $cliente["id"],
+    		
 		);		
 		return view('depositar',$data);
 	}
 
+	public function retirar() {
+		$session = session();
+		$cod_usuario = $session->get("cod_usuario");
+		$userModel = new UserModel($db);
+		$clientesModel = new ClientesModel();
+
+		$user = $userModel->getById($cod_usuario);
+    	$cliente  =  $clientesModel->getByUser($cod_usuario);
+    	$saldo = $clientesModel->getSaldoPorCliente($cliente["id"]);	    	
+		$data = array(
+    		'nombre_usuario' => $user['name'],
+    		'cod_usuario' 	 => $cod_usuario,
+    		'cod_cliente' 	 => $cliente["id"],
+    		'saldo' => $saldo
+		);
+
+		return view('retirar',$data);
+	}
+
 	public function misdepositos()	{
-		return view('mis_depositos');
+		$session = session();
+		$clientesModel = new ClientesModel();
+		$cod_usuario = $session->get("cod_usuario");				
+
+		$cliente  =  $clientesModel->getByUser($cod_usuario);
+		$cod_cliente  = $cliente["id"];
+		$saldo = $clientesModel->getSaldoPorCliente($cod_cliente);
+		$bloqueado = $clientesModel->getSaldoBloqueadoPorCliente($cod_cliente);
+		$data = array(
+    		'saldo_actual'    => $saldo,
+    		'saldo_bloqueado' => $bloqueado,
+		);
+		
+		return view('mis_depositos', $data);
 	}
 	
 	public function getDepositos()	{
@@ -63,11 +96,37 @@ class Clientes extends BaseController
 		  'observaciones' => $observaciones,
 		  'fecha_deposito' =>  date("Y-m-d", strtotime($fecha_deposito)),
 		];
-
+		$this->enviarMail("Deposito", 'Se hizo un deposito');
 		return json_encode($abonosModel->insert($data));
 		
 	}
 	
+	public function guardar_retiro()	{
+		header('Content-Type: application/json');
+		$abonosModel = new AbonosModel();
+		$cod_cliente  = $_POST['cod_cliente'];
+		$cod_banco  = 0;
+		$monto = $_POST['monto'];
+		$referencia = 'retiro';
+		$observaciones = $_POST['observaciones'];
+		$fecha_deposito = date("Y/m/d");
+		
+		if ($monto == 0) return;
+		if ($cod_cliente == 0) return;
+
+		$data = [
+		  'cod_cliente' => $cod_cliente,
+		  'cod_datos_banco' => $cod_banco,
+          'monto' => abs($monto) * -1,
+		  'referencia' => $referencia,
+		  'observaciones' => $observaciones,
+		  'fecha_deposito' =>  date("Y-m-d", strtotime($fecha_deposito)),
+		  'cod_datos_estado' => 18
+		];
+
+		return json_encode($abonosModel->insert($data));		
+	}
+
 	public function guardar()	{
 		header('Content-Type: application/json');
 		$userModel = new UserModel($db);
@@ -103,5 +162,14 @@ class Clientes extends BaseController
 		  'cod_datos_grupo' => $cod_grupo,
 		];		
 		return json_encode($clientesModel->insert($data));		
+	}
+
+	public function enviarMail($subject, $content) {
+		$email = \Config\Services::email();
+		$email->setFrom('alertas@dacli.com', 'Alertas Dacli');
+		$email->setTo('davdomin@gmail.com');
+		$email->setSubject($subject);
+		$email->setMessage($content);
+		$email->send();
 	}
 }

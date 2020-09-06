@@ -35,8 +35,9 @@
 </div>
 
 <script type="text/javascript">
-function onClick() {   
-
+function btnGuardar_onClick() {   
+    event.preventDefault();
+    $('#btnGuardar').data('kendoButton').enable(false);
     $.post( "../Clientes/guardar_deposito", { 
         cod_cliente: $("#txtCodcliente").val(),
         cod_banco:  $("#cmbBanco").data("kendoComboBox").value(),
@@ -47,6 +48,7 @@ function onClick() {
     }).done(function( data ) {
         data = $.parseJSON(data);
         mensaje('Abonos','Deposito registrado');
+        $('#btnGuardar').data('kendoButton').enable(true);
         
     });        
 
@@ -67,7 +69,7 @@ $(function() {
                     dateInput: true
                 });
     $("#btnGuardar").kendoButton({
-        click: onClick
+        click: btnGuardar_onClick
     });
     $("#cmbBanco").kendoComboBox({
         dataSource: getDataSource(C_BANCO),

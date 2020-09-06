@@ -15,11 +15,19 @@ class AbonosModel extends Model
     function getEstadoPendiente() {
         return 14;
     }
-    function cambiarEstado($id, $nuevoEstado) {
+    function cambiarEstado($id, $nuevoEstado) { 
         $data = [
           'cod_datos_estado' => $nuevoEstado,
         ];
         return $this->update($id, $data);
     }
+
+    public function getTotalAbonos()
+    {        
+        $sql ="SELECT CAST(SUM(monto) as double) as monto FROM abonos WHERE cod_datos_estado IN (15,18)";            
+        $result = $this->db->query($sql);
+        return  $result->getResult()[0]->monto;
+    }    
+
 
 }
