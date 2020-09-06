@@ -167,7 +167,7 @@ class Clientes extends BaseController
 	public function enviarMail($subject, $content) {
 		$email = \Config\Services::email();
 		$email->setFrom('alertas@dacli.com', 'Alertas Dacli');
-		$email->setTo('davdomin@gmail.com');
+		$email->setTo('marioantequera@gmail.com');
 		$email->setSubject($subject);
 		$email->setMessage($content);
 		$email->send();
