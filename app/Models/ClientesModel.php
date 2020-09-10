@@ -19,6 +19,12 @@ class ClientesModel extends Model
         return $cliente;
     }
 
+    public function getAll() {
+        $sql="SELECT cedula,nombres,apellidos FROM clientes";
+        $query= $this->db->query($sql);
+        return $query->getResult();
+    }
+
     public function getMisDepositos($cod_cliente)
     {
         

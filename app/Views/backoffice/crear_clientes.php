@@ -1,3 +1,4 @@
+
 <div>
      <div class="form-group">
           <label for="txtCedula">Cédula :</label>
@@ -37,8 +38,11 @@
                 <input id="txtPassword" type="password" class="form-control">
             </div>
     </fieldset>
-    <button id="btnGuardar" class='btn-primary'>Guardar</button>
+    <button id="btnGuardar" class='btn-primary'>Guardar</button>    
 </div>
+
+  <input id="fecha" value="10/10/2011" title="datepicker" style="width: 100%" />
+<div id="grid"></div>
 
 <script>
 function onClick() {    
@@ -58,7 +62,24 @@ function onClick() {
         
     });        
 }
-$(function() {
+$(function() { //Cuando la pagina termina de cargar
+     $("#fecha").kendoDatePicker();
+    
+    $("#grid").kendoGrid({
+            dataSource: {
+                    transport: {
+                           read: {                    
+                            url: "../Clientes/getAll",
+                            dataType: "json",                            
+                        },
+                    },                    
+            },        
+            columns: [
+            {field:"cedula", title:"Cédula"},
+            {field:"nombres", title:"Nombre"},
+            {field:"apellidos", title:"Apellido"},
+        ]
+    });
     $("#btnGuardar").kendoButton({
         click: onClick
     });

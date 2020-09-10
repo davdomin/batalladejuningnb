@@ -6,8 +6,19 @@ use App\Models\AbonosModel;
 
 class Clientes extends BaseController
 {
+	public function getAll() {
+		header('Content-Type: application/json');
+		$clientesModel = new ClientesModel();
+		return json_encode($clientesModel->getAll());
+	}
+
+
 	public function crear()	{
 		return view('backoffice/crear_clientes');
+	}
+	
+	public function actualizar()	{
+		return view('backoffice/actualizar-datos');
 	}
 
 	public function depositar() {
