@@ -21,3 +21,17 @@
 #btnGuardar {
 	color: red !important;
 }
+
+.bg-light {
+	color:white;
+	background-color: red !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	color:white !important;
+	font-weight: 500;
+}
+
+.navbar-brand {
+	color: yellow !important;
+}

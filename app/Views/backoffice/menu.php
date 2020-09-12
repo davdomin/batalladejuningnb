@@ -44,7 +44,7 @@
 
 
 <script>
-  var total = <?php echo $total_acumulado; ?>;
+  var total = <?php echo $total_acumulado ?$total_acumulado: 0; ?>;
 
     $(document).ready(function(){     
        cargarOpciones();
