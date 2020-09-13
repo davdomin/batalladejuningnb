@@ -3,12 +3,12 @@ const C_GRUPO_SANGUINEO = 2;
 const C_BANCO = 3;
 const C_ESTADO_DEPOSITO = 4;
 
-function getDataSource(cod_clasificacion) {
+function getDataSource(cod_clasificacion, pre='../') {
 
         var dataSource = new kendo.data.DataSource({
                 transport: {
                     read: {                    
-                        url: "../Home/getDataSource",
+                        url: pre+"Home/getDataSource",
                         dataType: "json",
                         type: "POST",
                         data: {cod_clasificacion: cod_clasificacion}

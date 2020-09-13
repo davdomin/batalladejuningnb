@@ -10,15 +10,15 @@
      </div>    
     <div class="form-group">
         <label for="txtApellidos">Apellidos :</label>
-        <input id="txtApellidos" type="" class="form-control">
+        <input id="txtApellidos" class="form-control">
     </div>
     <div class="form-group">
         <label for="txtDireccion">Dirección :</label>
-        <input id="txtDireccion" type="" class="form-control">
+        <input id="txtDireccion" class="form-control">
     </div>
     <div class="form-group">
         <label for="txtTelefono">Teléfono :</label>
-        <input id="txtTelefono" type="" class="form-control">
+        <input id="txtTelefono" class="form-control">
     </div>
     <div class="form-group">
         <label for="cmbSexo">Sexo :</label>
@@ -34,26 +34,25 @@
                 <input id="txtEmail" type="email" class="form-control">
             </div>
             <div class="form-group">
-                <label for="txtPassword">Contraseña:</label>
-                <input id="txtPassword" type="password" class="form-control">
+                <label for="txtPassword-crear">Contraseña:</label>
+                <input id="txtPassword-crear" type="password" class="form-control">
             </div>
     </fieldset>
     <button id="btnGuardar" class='btn-primary'>Guardar</button>    
 </div>
 
   <input id="fecha" value="10/10/2011" title="datepicker" style="width: 100%" />
-<div id="grid"></div>
 
 <script>
 function onClick() {    
-    $.post( "../Clientes/guardar", { 
+    $.post( "Clientes/guardar", { 
         cedula:    $("#txtCedula").val(),
         nombre:    $("#txtNombre").val(),
         apellido:  $("#txtApellidos").val(),
         direccion: $("#txtDireccion").val(),
         telefono:  $("#txtTelefono").val(),
         email:     $("#txtEmail").val(),
-        password:  $("#txtPassword").val(),
+        password:  $("#txtPassword-crear").val(),
         cod_sexo:  $("#cmbSexo").data("kendoComboBox").value(),
         cod_grupo:  $("#cmbGrupo").data("kendoComboBox").value(),
     }).done(function( data ) {
@@ -64,12 +63,12 @@ function onClick() {
 }
 $(function() { //Cuando la pagina termina de cargar
      $("#fecha").kendoDatePicker();
-    
+    /*
     $("#grid").kendoGrid({
             dataSource: {
                     transport: {
                            read: {                    
-                            url: "../Clientes/getAll",
+                            url: "../public/Clientes/getAll",
                             dataType: "json",                            
                         },
                     },                    
@@ -79,18 +78,18 @@ $(function() { //Cuando la pagina termina de cargar
             {field:"nombres", title:"Nombre"},
             {field:"apellidos", title:"Apellido"},
         ]
-    });
+    });*/
     $("#btnGuardar").kendoButton({
         click: onClick
     });
     $("#cmbSexo").kendoComboBox({
-        dataSource: getDataSource(C_SEXO),
+        dataSource: getDataSource(C_SEXO,''),
         dataTextField: "nombre",
         dataValueField: "id"
     });
 
     $("#cmbGrupo").kendoComboBox({
-        dataSource: getDataSource(C_GRUPO_SANGUINEO),
+        dataSource: getDataSource(C_GRUPO_SANGUINEO,''),
         dataTextField: "nombre",
         dataValueField: "id"
     });

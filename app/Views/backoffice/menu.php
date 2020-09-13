@@ -16,7 +16,7 @@
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
          <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
          <script src="../js/util.js"></script>
-         <link rel="stylesheet" href="../css/style.css">         
+         <link rel="stylesheet" href="../css/style.css">
     </head>
 <body>
      <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,7 +24,7 @@
        <div class="nav-wrappers">
           <ul id="lista_menu" class='navbar-nav mr-auto'></ul>          
        </div>       
-       <div id="info_tope">Total:</div><div id="total_acumulado"></div>
+       <div id="info_tope"><span class="k-icon k-i-sum"></span> </div><div id="total_acumulado"></div>
       </nav>
 
       <div class="container">
@@ -36,7 +36,7 @@
          <div class="form-group">
            <div id="pagina" >
             <div class="container-fluid">
-             <img src="../img/background.jpg" class="img-fluid">
+             <img src="../img/background.jpg" class="img-fluid img-centro">
             </div>            
            </div>
          </div>

@@ -35,3 +35,24 @@
 .navbar-brand {
 	color: yellow !important;
 }
+
+#for_login {
+	margin:  0px auto; 
+	display: block;
+	width:80% !important;
+}
+
+.boton-pequeno {
+	width: 120px;
+	padding-left:10px;
+}
+
+.img-centro {
+	padding-top: 100px;
+}
+
+#txtSaldo {
+	border:  1px solid #E9ECEF;  
+	height: 35px;
+	border-radius: 4px 3px 6px / 2px 4px;
+}

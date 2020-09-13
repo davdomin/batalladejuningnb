@@ -28,15 +28,27 @@ class Clientes extends BaseController
 		$clientesModel = new ClientesModel();
 
 		$user = $userModel->getById($cod_usuario);
-    	$cliente  =  $clientesModel->getByUser($cod_usuario);
+		$cliente  =  $clientesModel->getByUser($cod_usuario);
     	
 		$data = array(
-    		'nombre_usuario' => $user['name'],
+			'nombre_usuario' => $user['name'],
     		'cod_usuario' => $cod_usuario,
     		'cod_cliente' => $cliente["id"],
     		
 		);		
 		return view('depositar',$data);
+	}
+
+	public function getSaldo() {
+		header('Content-Type: application/json');
+		$clientesModel = new ClientesModel();		
+		$cod_cliente  = $_GET['cod_cliente'];
+		$saldo = $clientesModel->getSaldoPorCliente($cod_cliente);
+		$data = array(
+			'saldo' => $saldo
+		);
+		return json_encode($data);
+
 	}
 
 	public function retirar() {
@@ -47,7 +59,7 @@ class Clientes extends BaseController
 
 		$user = $userModel->getById($cod_usuario);
     	$cliente  =  $clientesModel->getByUser($cod_usuario);
-    	$saldo = $clientesModel->getSaldoPorCliente($cliente["id"]);	    	
+    	
 		$data = array(
     		'nombre_usuario' => $user['name'],
     		'cod_usuario' 	 => $cod_usuario,

@@ -20,7 +20,7 @@ class ClientesModel extends Model
     }
 
     public function getAll() {
-        $sql="SELECT cedula,nombres,apellidos FROM clientes";
+        $sql="SELECT id,cedula,nombres,apellidos, CONCAT(nombres,' ',apellidos) as nombrecompleto FROM clientes";
         $query= $this->db->query($sql);
         return $query->getResult();
     }

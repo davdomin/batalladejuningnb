@@ -12,16 +12,24 @@
       
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
       <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.common.min.css" />
       <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" />
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+       <script src="js/util.js"></script>
+
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+
+      <link rel="stylesheet" href="css/style.css">
+
     </head>
 
     <body>
+          <div id="window" style="display: none;"></div>
           <div class="bg">
             <img src="img/inicial.jpg" />
-        <h1>Batalla de Junin GNB</h1>
-        
+            <h1>Batalla de Junin GNB</h1>        
         <div class="card  white darken-1" id="for_login">
             <span class="card-title">Iniciar sesión</span>        
             <div class="row">
@@ -38,9 +46,13 @@
                   </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s10">
-                        <button id="btnIniciar">Iniciar sesión</button>
+                    <div class="input-field col s1">
+                        <button id="btnIniciar" class="boton-pequeno">Login</button>                        
                     </div>
+                    <div class="input-field col s1">
+                        <button id="btnRegistro" class="boton-pequeno">Registrarse</button>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -67,14 +79,56 @@
                     
             });            
         }
+
+        function abrirVentana() {
+              //Aca crea la ventana
+
+              var myWindow = $("#window"),
+                undo = $("#undo");
+
+            undo.click(function() {
+                myWindow.data("kendoWindow").open();
+                undo.fadeOut();
+            });
+
+            function onClose() {
+                undo.fadeIn();
+            }
+
+            myWindow.kendoWindow({
+                width: "900px",
+                title: "Registro de usuario",
+                visible: false,
+                actions: [
+                    "Pin",
+                    "Minimize",
+                    "Maximize",
+                    "Close"
+                ],
+                close: onClose
+            }).data("kendoWindow").center().open();
+        }  //acá termina abrir ventanax
         
         $(function() {
+          $("#window").load('./Clientes/crear');
             $("#btnIniciar").kendoButton({
                 icon: "login",
                 click: onClick
             });
+            $("#btnRegistro").kendoButton({
+                icon: "user",
+                click: () => {
+                  abrirVentana();
+                }
+            });
+
+
+
+
 
         });
+
+
     </script>
     <style>
       body, html {
