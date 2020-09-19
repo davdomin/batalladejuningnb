@@ -26,11 +26,20 @@
     </head>
 
     <body>
+          <?php echo base_url('batalladejuningnb/public') ?>
           <div id="window" style="display: none;"></div>
-          <div class="bg">
-            <img src="img/inicial.jpg" />
-            <h1>Batalla de Junin GNB</h1>        
+          
+          <header class="header">
+            <div class ="logo">
+              <img src="img/inicial.jpg" />
+            </div>
+            <div class ="title">
+              <h1>Batalla de Junin GNB</h1>   
+            </div>
+          </header>
+            <div class="bg">
         <div class="card  white darken-1" id="for_login">
+        <img src="img/login.png" />
             <span class="card-title">Iniciar sesión</span>        
             <div class="row">
                 <div class="row">
@@ -46,10 +55,8 @@
                   </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s1">
+                    <div class="input-field col s12">
                         <button id="btnIniciar" class="boton-pequeno">Login</button>                        
-                    </div>
-                    <div class="input-field col s1">
                         <button id="btnRegistro" class="boton-pequeno">Registrarse</button>
                     </div>
 

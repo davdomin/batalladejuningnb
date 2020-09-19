@@ -8,7 +8,7 @@ function getDataSource(cod_clasificacion, pre='../') {
         var dataSource = new kendo.data.DataSource({
                 transport: {
                     read: {                    
-                        url: pre+"Home/getDataSource",
+                        url: pre+"getDataSource",
                         dataType: "json",
                         type: "POST",
                         data: {cod_clasificacion: cod_clasificacion}
@@ -33,22 +33,17 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
 
-   function mensaje(titulo, contenido) {
-    var dialog = $('#dialog');           
-       dialog.kendoDialog({
-          width: "450px",
+   function mensaje(titulo, contenido) {   
+      $('#dialog').kendoDialog({
+          width: "1450px",
           title: titulo,
-          closable: false,
-          modal: false,
           content: contenido,
           actions: [
-              //{ text: 'Skip this version' },
-              //{ text: 'Remind me later' },
               { text: 'Aceptar', primary: true }
           ],
-         //close: function (e) {  undo.fadeIn();}
       });
-       dialog.data("kendoDialog").open();
+      var dialog = $('#dialog').data("kendoDialog");
+      dialog.destroy();
    }   
 
    function mensaje_html(titulo,contenido)  {
@@ -58,3 +53,9 @@ function formatDate(date) {
         );
     setTimeout(function(){ $("#mensaje_html").css("visibility",'none'); }, 2000);
    }
+
+
+   function stackTrace() {
+    var err = new Error();
+    return err.stack;
+}

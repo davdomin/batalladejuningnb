@@ -1,3 +1,31 @@
+body {
+	background-color: rgb(12, 12, 12);
+	font-family: sans-serif;
+	color: darkgray;
+}
+#for_login {
+	width: 50%;
+}
+.input-field {
+	padding-top: 15px !important;
+}
+.header {
+	background-color: rgb(12, 12, 12);
+}
+.title {
+	display: block;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	color: crimson;
+	margin: auto;	
+	text-align:center;	
+}
+.logo {
+	display: block;
+	margin: auto;
+	text-align:center;	
+	padding-top: 1px;	
+	
+}
 #info_tope {
 	display: block;
 	float: right;

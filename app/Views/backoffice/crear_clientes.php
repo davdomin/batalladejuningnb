@@ -37,48 +37,52 @@
                 <label for="txtPassword-crear">Contraseña:</label>
                 <input id="txtPassword-crear" type="password" class="form-control">
             </div>
+            <div class="form-group">
+                <label for="txtPassword-confirmar">Confirmar contraseña:</label>
+                <input id="txtPassword-confirmar" type="password" class="form-control">
+            </div>
     </fieldset>
     <button id="btnGuardar" class='btn-primary'>Guardar</button>    
+    <div class="toast" >
+    <div class="toast-header">
+      Error
+    </div>
+    <div class="toast-body">
+        <div id="msgToast" class="toast-msg"></div>
+    </div>
+  </div>
 </div>
 
-  <input id="fecha" value="10/10/2011" title="datepicker" style="width: 100%" />
+
 
 <script>
 function onClick() {    
-    $.post( "Clientes/guardar", { 
-        cedula:    $("#txtCedula").val(),
-        nombre:    $("#txtNombre").val(),
-        apellido:  $("#txtApellidos").val(),
-        direccion: $("#txtDireccion").val(),
-        telefono:  $("#txtTelefono").val(),
-        email:     $("#txtEmail").val(),
-        password:  $("#txtPassword-crear").val(),
-        cod_sexo:  $("#cmbSexo").data("kendoComboBox").value(),
-        cod_grupo:  $("#cmbGrupo").data("kendoComboBox").value(),
-    }).done(function( data ) {
-        data = $.parseJSON(data);
-        mensaje('Clientes','Cliente registrado');
+    if  ($("#txtPassword-confirmar").val() !=  $("#txtPassword-crear").val()) {
+        $("#msgToast").html("Las contraseñas no coinciden");
+        $('.toast').toast('show');
+        return;
+    } else {
         
-    });        
+    
+        $.post( "Clientes/guardar", { 
+            cedula:    $("#txtCedula").val(),
+            nombre:    $("#txtNombre").val(),
+            apellido:  $("#txtApellidos").val(),
+            direccion: $("#txtDireccion").val(),
+            telefono:  $("#txtTelefono").val(),
+            email:     $("#txtEmail").val(),
+            password:  $("#txtPassword-crear").val(),
+            cod_sexo:  $("#cmbSexo").data("kendoComboBox").value(),
+            cod_grupo:  $("#cmbGrupo").data("kendoComboBox").value(),
+        }).done(function( data ) {
+            data = $.parseJSON(data);
+            mensaje('Clientes','Cliente registrado');
+            
+        });     
+    }   
 }
 $(function() { //Cuando la pagina termina de cargar
-     $("#fecha").kendoDatePicker();
-    /*
-    $("#grid").kendoGrid({
-            dataSource: {
-                    transport: {
-                           read: {                    
-                            url: "../public/Clientes/getAll",
-                            dataType: "json",                            
-                        },
-                    },                    
-            },        
-            columns: [
-            {field:"cedula", title:"Cédula"},
-            {field:"nombres", title:"Nombre"},
-            {field:"apellidos", title:"Apellido"},
-        ]
-    });*/
+    $("#fecha").kendoDatePicker();    
     $("#btnGuardar").kendoButton({
         click: onClick
     });
