@@ -27,4 +27,12 @@ class Home extends BaseController
 		return json_encode($datosModel->getDatos($cod_clasificacion));
 	}
 
+	public function getValuesByKey() {
+		header('Content-Type: application/json');
+		$key  = $_GET['key'];
+		$datosModel = new DatosModel($db);
+		return json_encode($datosModel->getDatosByKey($key));
+
+	}
+
 }

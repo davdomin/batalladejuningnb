@@ -19,6 +19,26 @@ function getDataSource(cod_clasificacion, pre='../') {
     return dataSource;    
 }
 
+function callDataByKey(key, pre='../') {    
+    return new Promise(resolve => {
+        $.get(pre+"Home/getValuesByKey", {key: key})
+        .done( (result)=> {
+            resolve(result);            
+            }
+        )
+        .fail (
+            (err)=> {
+                console.log(err);
+            }
+        )
+    }); 
+}
+
+async function getDataByKey(key)  {
+    const result = await callDataByKey(key);    
+    return result;
+}
+
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
