@@ -27,7 +27,7 @@
        <div class="nav-wrappers">
           <ul id="lista_menu" class='navbar-nav mr-auto'></ul>          
        </div>       
-       <div id="info_tope"><span class="k-icon k-i-sum"></span> </div><div id="total_acumulado"></div>
+       <div id="info_tope" class="importante"> Monto Acumulado : <div id="total_acumulado"></div> </div>
       </nav>
 
       <div class="container">
