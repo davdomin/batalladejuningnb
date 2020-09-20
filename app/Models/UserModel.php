@@ -22,18 +22,23 @@ class UserModel extends Model
     protected $skipValidation     = false;
     
 
-    public function getOpciones($cod_padre)
+    public function getOpciones($cod_padre, $cod_usuario)
     {        
-        $sql ="SELECT t.id,t.nombre,t.controller,t.metodo,t.cod_padre,
+        $sql ="SELECT  
+                    t.id,t.nombre,t.controller,t.metodo,t.cod_padre,
                 exists(select 1 from menu t1 where t1.cod_padre = t.id) tiene_hijos
-                FROM menu t WHERE cod_padre = $cod_padre AND t.deleted = 0";                
-        $result = $this->db->query($sql);        
+                    FROM menu t 
+                    INNER JOIN perfil_menu pm ON t.id = pm.cod_menu
+                    INNER JOIN users u ON u.cod_perfil = pm.cod_perfil	
+                WHERE t.deleted = 0 AND t.cod_padre = $cod_padre  AND u.id   =  $cod_usuario";
+
+        $result = $this->db->query($sql);
         return  $result->getResult();
     }
 
     public function getPerfiles() {
         $sql ="SELECT id,nombre FROM perfiles";                
-        $result = $this->db->query($sql);        
+        $result = $this->db->query($sql);
         return  $result->getResult();
     }
 

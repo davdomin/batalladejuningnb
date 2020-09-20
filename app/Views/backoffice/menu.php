@@ -47,7 +47,14 @@
 
 
 <script>
-  var total = <?php echo $total_acumulado ?$total_acumulado: 0; ?>;
+  var total = <?php echo $total_acumulado ? $total_acumulado: 0; ?>;
+  var login_path = '<?php echo env('index_url') ?>';
+  var id_login = <?php echo $id_login ?>;
+  
+  console.log(id_login);
+    if (id_login  == -1) {
+      location.href = login_path;
+    }
 
     $(document).ready(function(){     
        cargarOpciones();
@@ -82,7 +89,7 @@
      var childtag = 'ul'+item.id;
      $("#li"+item.id).append("<ul id='"+ childtag +"' class='dropdown-content'> </ul>");
      
-     $.post( "../User/getOpcionesMenu", {cod_usuario :1, cod_padre:item.id},function (data) {
+     $.post( "../User/getOpcionesMenu", {cod_usuario : id_login, cod_padre:item.id},function (data) {
       $.each(data, function( key, child) {         
          agregarMenu(childtag,child,1);
        });  
@@ -91,7 +98,7 @@
    
    function cargarOpciones() {
       
-     $.post( "../User/getOpcionesMenu", {cod_usuario :1, cod_padre:0},function (data) {
+     $.post( "../User/getOpcionesMenu", {cod_usuario : id_login, cod_padre:0},function (data) {
       $.each(data, function( key, item) {         
          agregarMenu("lista_menu",item,0);
        });  

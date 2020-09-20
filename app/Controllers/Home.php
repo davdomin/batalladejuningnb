@@ -8,17 +8,16 @@ class Home extends BaseController
 	public function index()	{
 		$session = session();
 		$abonosModel = new AbonosModel();
+		
+		$id_login = $session->get("cod_usuario") ?  $session->get("cod_usuario") :-1;
+		//var_dump($id_login); die();
 		$data = array(
-    		'total_acumulado' => $abonosModel->getTotalAbonos(),
-		);	
+			'id_login' => $id_login,
+			'total_acumulado' => $abonosModel->getTotalAbonos()			
+			
+		);
 
-		$vista = "backoffice/login";				
-		if ($session->has("cod_usuario"))
-
-			$vista ="backoffice/menu";
-
-		return view($vista,$data);
-
+		return view('backoffice/menu',$data);
 	}
 
 	public function getDataSource() {
