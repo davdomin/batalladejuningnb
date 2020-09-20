@@ -13,7 +13,7 @@
 
     <div class="form-group">
         <label for="cmbBanco">Banco :</label>
-        <input id="cmbBanco" class="form-control">
+        <select id="cmbBanco" class="form-control"> </select>
     </div>
      <div class="form-group">
         <label for="txtReferencia">Referencia :</label>
