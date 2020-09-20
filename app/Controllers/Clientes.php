@@ -2,6 +2,7 @@
 
 use App\Models\UserModel;
 use App\Models\ClientesModel;
+use App\Models\DatosModel;
 use App\Models\AbonosModel;
 
 class Clientes extends BaseController
@@ -25,16 +26,22 @@ class Clientes extends BaseController
 		$session = session();
 		$cod_usuario = $session->get("cod_usuario");
 		$userModel = new UserModel($db);
-		$clientesModel = new ClientesModel();
+		$datosModel = new DatosModel($db);
+		$mail_admin = $datosModel->getDatosByKey ('MAIL_ADMIN')[0]->nombre;
+
+		
+		$clientesModel = new ClientesModel($db);
+		
 
 		$user = $userModel->getById($cod_usuario);
-		$cliente  =  $clientesModel->getByUser($cod_usuario);
-    	
+		
+		
 		$data = array(
 			'nombre_usuario' => $user['name'],
     		'cod_usuario' => $cod_usuario,
-    		'cod_cliente' => $cliente["id"],
-    		
+			'cod_cliente' => $cliente["id"],
+			'mail_cliente' => $cliente["email"],
+			'mail_admin' => $mail_admin    		
 		);		
 		return view('depositar',$data);
 	}
@@ -119,7 +126,9 @@ class Clientes extends BaseController
 		  'observaciones' => $observaciones,
 		  'fecha_deposito' =>  date("Y-m-d", strtotime($fecha_deposito)),
 		];
-		$this->enviarMail("Deposito", 'Se hizo un deposito');
+		$datosModel = new DatosModel($db);
+		$mail_admin = $datosModel->getDatosByKey ('MAIL_ADMIN')[0]->nombre;
+		$this->enviarMail("Deposito", 'Se hizo un deposito', $mail_admin);
 		return json_encode($abonosModel->insert($data));
 		
 	}
@@ -187,10 +196,10 @@ class Clientes extends BaseController
 		return json_encode($clientesModel->insert($data));		
 	}
 
-	public function enviarMail($subject, $content) {
+	public function enviarMail($subject, $content, $to) {
 		$email = \Config\Services::email();
 		$email->setFrom('alertas@dacli.com', 'Alertas Dacli');
-		$email->setTo('marioantequera@gmail.com');
+		$email->setTo($to);
 		$email->setSubject($subject);
 		$email->setMessage($content);
 		$email->send();

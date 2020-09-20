@@ -35,6 +35,9 @@
 </div>
 
 <script type="text/javascript">
+//var mail_admin = getDataByKey('MAIL_ADMIN');
+var mail_admin = <?php  echo $mail_admin; ?>;
+var mail_cliente = <?php  echo $mail_cliente; ?>;
 function btnGuardar_onClick() {   
     event.preventDefault();
     $('#btnGuardar').data('kendoButton').enable(false);
@@ -54,6 +57,7 @@ function btnGuardar_onClick() {
 
 }
 $(function() {
+    
     $("#dtfecha").kendoDatePicker({
                     // defines the start view
                     value: new Date(),

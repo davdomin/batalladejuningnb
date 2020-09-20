@@ -14,9 +14,14 @@ class AdminController extends BaseController
 	}
 	public function cambiarEstadoAbono() {
 		header('Content-Type: application/json');
+		$session = session();
+		$cod_usuario = $session->get("cod_usuario");
+
 		$cod_estado  = $_POST['cod_estado'];
 		$cod_abono  = $_POST['cod_abono'];
 		$abonosModel = new AbonosModel();
+		$user = $userModel->getById($cod_usuario);
+		$this->enviarMail("Deposito", 'Se aprobó el su deposito # $cod_abono', $cliente["email"]);
 		return $abonosModel->cambiarEstado($cod_abono, $cod_estado);
 	}
 
@@ -27,5 +32,13 @@ class AdminController extends BaseController
 		return json_encode($clientesModel->getDepositosEstado($abonosModel->getEstadoPendiente()));
 	}
 
+	public function enviarMail($subject, $content, $to) {
+		$email = \Config\Services::email();
+		$email->setFrom('alertas@dacli.com', 'Alertas Dacli');
+		$email->setTo($to);
+		$email->setSubject($subject);
+		$email->setMessage($content);
+		$email->send();
+	}
 
 }
