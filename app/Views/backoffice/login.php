@@ -1,4 +1,3 @@
-
   <!DOCTYPE html>
   <html>
     <head>
@@ -25,8 +24,7 @@
 
     </head>
 
-    <body>
-          <?php echo base_url('batalladejuningnb/public') ?>
+    <body>          
           <div id="window" style="display: none;"></div>
           
           <header class="header">
