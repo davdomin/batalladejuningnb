@@ -42,6 +42,10 @@ class User extends BaseController
 		header('Content-Type: application/json');
 		return json_encode($userModel->insert($data));		
 	}
+	public function getPerfiles() {
+		$userModel = new UserModel($db);		
+		return json_encode($userModel->getPerfiles());
+	}
 	
 	public function getOpcionesMenu()
 	{

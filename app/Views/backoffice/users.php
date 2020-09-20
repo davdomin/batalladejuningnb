@@ -7,9 +7,13 @@
         <label for="txtEmail">Email :</label>
         <input id="txtEmail" type='email' class="form-control">
      </div>    
-    <div class="form-group">
+     <div class="form-group">
         <label for="txtPassword">Password :</label>
         <input id="txtPassword" type="password" class="form-control">
+    </div>    
+    <div class="form-group">
+        <label for="cmbPerfil">Perfil :</label>
+        <select id="cmbPerfil" class="form-control"> </select>
     </div>    
     <button id="btnGuardar" class='btn-primary'>Guardar</button>
 </div>
@@ -30,7 +34,19 @@ function onClick() {
         $("#btnGuardar").kendoButton({            
             click: onClick            
         });
+        var dsPerfil = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "../User/getPerfiles",
+                    dataType: "json",
+                    type: "GET"                    
+                }
+            },
+        });
+        $("#cmbPerfil").kendoComboBox({
+            dataSource: dsPerfil,
+            dataTextField: "nombre",
+            dataValueField: "id"
+        });
     });
-
-    
 </script>

@@ -43,7 +43,7 @@
             </div>
     </fieldset>
     <button id="btnGuardar" class='btn-primary'>Guardar</button>    
-    <div class="toast" >
+    <div class="toast">
     <div class="toast-header">
       Error
     </div>
