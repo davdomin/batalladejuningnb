@@ -55,7 +55,7 @@ function formatDate(date) {
 
    function mensaje(titulo, contenido) {   
       $('#dialog').kendoDialog({
-          width: "1450px",
+          width: "450px",
           title: titulo,
           content: contenido,
           actions: [
