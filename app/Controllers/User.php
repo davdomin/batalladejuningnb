@@ -23,11 +23,11 @@ class User extends BaseController
 	public function cerrarSesion() {
 		$session = session();
 		$login_path = env('index_url');
-		
-		die();
-		$this->session->destroy();
-
-
+		$data = [
+			'login_path' => $login_path
+		];
+		$session->set(['cod_usuario' => -1]);
+		return view('backoffice/cerrar_sesion', $data);		
 	}
 	public function guardar()	{
 		$userModel = new UserModel($db);
