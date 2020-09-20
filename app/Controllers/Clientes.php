@@ -28,12 +28,9 @@ class Clientes extends BaseController
 		$userModel = new UserModel($db);
 		$datosModel = new DatosModel($db);
 		$mail_admin = $datosModel->getDatosByKey ('MAIL_ADMIN')[0]->nombre;
-
-		
 		$clientesModel = new ClientesModel($db);
-		
-
 		$user = $userModel->getById($cod_usuario);
+		$cliente  =  $clientesModel->getByUser($cod_usuario);
 		
 		
 		$data = array(
