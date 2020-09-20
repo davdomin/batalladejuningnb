@@ -8,7 +8,7 @@ function getDataSource(cod_clasificacion, pre='../') {
         var dataSource = new kendo.data.DataSource({
                 transport: {
                     read: {                    
-                        url: pre+"getDataSource",
+                        url: pre+"Home/getDataSource",
                         dataType: "json",
                         type: "POST",
                         data: {cod_clasificacion: cod_clasificacion}
