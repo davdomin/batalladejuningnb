@@ -62,8 +62,8 @@ function formatDate(date) {
               { text: 'Aceptar', primary: true }
           ],
       });
-      var dialog = $('#dialog').data("kendoDialog");
-      dialog.destroy();
+      let dialog = $('#dialog').data("kendoDialog");
+      dialog.open();
    }   
 
    function mensaje_html(titulo,contenido)  {
