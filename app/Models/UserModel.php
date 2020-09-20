@@ -27,7 +27,7 @@ class UserModel extends Model
         
         $sql ="SELECT t.id,t.nombre,t.controller,t.metodo,t.cod_padre,
                 exists(select 1 from menu t1 where t1.cod_padre = t.id) tiene_hijos
-                FROM menu t WHERE cod_padre = $cod_padre";                
+                FROM menu t WHERE cod_padre = $cod_padre AND t.deleted = 0";                
         $result = $this->db->query($sql);        
         return  $result->getResult();
     }

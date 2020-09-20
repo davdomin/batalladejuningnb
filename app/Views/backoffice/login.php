@@ -25,8 +25,7 @@
 
     </head>
 
-    <body>
-          <?php echo base_url('batalladejuningnb/public') ?>
+    <body>          
           <div id="window" style="display: none;"></div>
           
           <header class="header">
@@ -37,9 +36,9 @@
               <h1>Batalla de Junin GNB</h1>   
             </div>
           </header>
-            <div class="bg">
-        <div class="card  white darken-1" id="for_login">
-        <img src="img/login.png" />
+          <div class="bg">
+          <div class="card  white darken-1" id="for_login">        
+            <img src="img/login.png" />
             <span class="card-title">Iniciar sesión</span>        
             <div class="row">
                 <div class="row">
@@ -59,10 +58,9 @@
                         <button id="btnIniciar" class="boton-pequeno">Login</button>                        
                         <button id="btnRegistro" class="boton-pequeno">Registrarse</button>
                     </div>
-
                 </div>
-            </div>
-        </div>
+              </div>
+          </div>
       <!--JavaScript at end of body for optimized loading-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
       </div>
