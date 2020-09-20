@@ -15,8 +15,9 @@ class AdminController extends BaseController
 	public function cambiarEstadoAbono() {
 		header('Content-Type: application/json');
 		$session = session();
-		$cod_usuario = $session->get("cod_usuario");
+		$userModel = new UserModel($db);
 
+		$cod_usuario = $session->get("cod_usuario");
 		$cod_estado  = $_POST['cod_estado'];
 		$cod_abono  = $_POST['cod_abono'];
 		$abonosModel = new AbonosModel();
