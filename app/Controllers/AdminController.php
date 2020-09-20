@@ -22,7 +22,8 @@ class AdminController extends BaseController
 		$cod_abono  = $_POST['cod_abono'];
 		$abonosModel = new AbonosModel();
 		$user = $userModel->getById($cod_usuario);
-		$this->enviarMail("Aprobación de deposito", 'Se aprobó el su deposito # $cod_abono', $user["email"]);
+		$email = $user["email"];		
+		$this->enviarMail("Aprobación de deposito", 'Se aprobó el su deposito', $email);
 		return $abonosModel->cambiarEstado($cod_abono, $cod_estado);
 	}
 
