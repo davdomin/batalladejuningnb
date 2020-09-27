@@ -183,6 +183,7 @@ class Clientes extends BaseController
 		$especialidad = $_POST['especialidad'];
 		$unidad = $_POST['unidad'];
 		$fecha_asc = $_POST['fecha_asc'];
+		$estatura = $_POST['estatura'];
 
 		$data = [
 			'cod_datos_grupo' => $cod_grupo,
@@ -194,7 +195,8 @@ class Clientes extends BaseController
 			'cod_datos_grado' => $cod_grado,
 			'especialidad' => $especialidad,
 			'unidad' => $unidad,
-			'fecha_asc' => $fecha_asc
+			'fecha_asc' => $fecha_asc,
+			'estatura' => $estatura
 		];
 
 		return json_encode($clientesModel->update($id, $data));

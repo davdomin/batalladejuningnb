@@ -51,6 +51,12 @@
           <div style ="width: 190px">
                <input id="dtFechaAscenso" value="01/01/2002" title="datepicker" class="form-control"/>
           </div>
+     </div>
+     <div class="form-group row">
+          <label for="txtEstatura"> : Estatura</label>
+          <div style ="width: 100px">
+               <input id="txtEstatura" class="form-control input-sm">
+          </div>
 
      </div>
 </fieldset>
@@ -105,6 +111,7 @@ function loadData() {
     $("#txtEspecialidad").val('<?php echo $cliente['especialidad'] ?>')
     $("#txtUnidad").val('<?php echo $cliente['unidad'] ?>')
     $("#dtFechaAscenso").data('kendoDatePicker').value('<?php echo $cliente['fecha_asc'] ?>')
+    $("#txtEstatura").val('<?php echo $cliente['estatura'] ?>')
 }
 function onClick() {
      event.preventDefault();
@@ -122,6 +129,7 @@ function onClick() {
         especialidad:   $("#txtEspecialidad").val(),
         unidad:         $("#txtUnidad").val(),
         fecha_asc:      formatDate($("#dtFechaAscenso").data("kendoDatePicker").value()),
+        estatura:       $("#txtEstatura").val(),
     }).done(function( data ) {
         data = $.parseJSON(data);
         mensaje('Actualizacion','Actualizacion completada');
