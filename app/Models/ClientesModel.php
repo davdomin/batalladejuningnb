@@ -12,7 +12,7 @@ class ClientesModel extends Model
     protected $allowedFields = [
         'cedula','cod_usuario','nombres','apellidos', 'direccion','telefono','cod_datos_sexo', 
         'cod_datos_grupo', 'cod_datos_jerarquia','cod_datos_lugar_nac', 'fecha_nac','telefono_fijo',
-        'cod_datos_cargo', 'cod_datos_grado', 'especialidad'
+        'cod_datos_cargo', 'cod_datos_grado', 'especialidad', 'unidad'
     ];
 
    public function __construct(){
