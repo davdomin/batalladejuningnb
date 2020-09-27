@@ -171,6 +171,7 @@ class Clientes extends BaseController
 		header('Content-Type: application/json');
 		$userModel = new UserModel($db);
 		$clientesModel = new ClientesModel($db);
+
 		$id = $_POST['cod_cliente'];
 		$cod_grupo = $_POST['cod_grupo'];
 		$cod_jerarquia = $_POST['cod_jerarquia'];
@@ -179,6 +180,7 @@ class Clientes extends BaseController
 		$telefono_fijo = $_POST['telefono_fijo'];
 		$cod_cargo = $_POST['cod_cargo'];
 		$cod_grado = $_POST['cod_grado'];
+		$especialidad = $_POST['especialidad'];
 
 		$data = [
 			'cod_datos_grupo' => $cod_grupo,
@@ -188,6 +190,7 @@ class Clientes extends BaseController
 			'telefono_fijo' => $telefono_fijo,
 			'cod_datos_cargo' => $cod_cargo,
 			'cod_datos_grado' => $cod_grado,
+			'especialidad' => $especialidad,
 		];
 
 		return json_encode($clientesModel->update($id, $data));

@@ -29,13 +29,17 @@
           <div style ="width: 190px">
                <input id="dtFechaNac" value="01/01/2002" title="datepicker" class="form-control"/>
           </div>
+          <label for="txtTelefonoFijo">Teléfono Fijo :</label>
+          <div style ="width: 190px">
+               <input id="txtTelefonoFijo" class="form-control input-sm">
+          </div>
      </div>
      <div class="form-group row">
           <label for="cmbGrado">Grado de Instrucción :</label>
           <input id="cmbGrado" class="form-control">
-          <label for="txtTelefonoFijo">Teléfono Fijo :</label>
-          <div style ="width: 190px">
-               <input id="txtTelefonoFijo" class="form-control input-sm">
+          <label for="txtEspecialidad">Especialidad :</label>
+          <div style ="width: 290px">
+               <input id="txtEspecialidad" class="form-control input-sm">
           </div>
      </div>
 </fieldset>
@@ -85,6 +89,7 @@ function loadData() {
     $("#txtTelefonoFijo").val('<?php echo $cliente['telefono_fijo'] ?>')
     $("#cmbCargo").data('kendoComboBox').value('<?php echo $cliente['cod_datos_cargo'] ?>')
     $("#cmbGrado").data('kendoComboBox').value('<?php echo $cliente['cod_datos_grado'] ?>')
+    $("#txtEspecialidad").val('<?php echo $cliente['especialidad'] ?>')    
 }
 function onClick() {
      event.preventDefault();
@@ -99,6 +104,7 @@ function onClick() {
         telefono_fijo:  $("#txtTelefonoFijo").val(),
         cod_cargo:      $("#cmbCargo").data("kendoComboBox").value(),
         cod_grado:      $("#cmbGrado").data("kendoComboBox").value(),
+        especialidad:   $("#txtEspecialidad").val(),
     }).done(function( data ) {
         data = $.parseJSON(data);
         mensaje('Actualizacion','Actualizacion completada');
