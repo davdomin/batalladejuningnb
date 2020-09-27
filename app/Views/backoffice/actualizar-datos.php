@@ -51,6 +51,9 @@
           <div style ="width: 190px">
                <input id="dtFechaAscenso" value="01/01/2002" title="datepicker" class="form-control"/>
           </div>
+          <label for="cmbEstadoCivil">Estado Civil :</label>
+          <input id="cmbEstadoCivil" class="form-control">
+
      </div>
      <div class="form-group row">
           <label for="txtEstatura">Estatura:</label>
@@ -75,8 +78,22 @@
           <input id="cmbGorra" class="form-control">
      </div>
      <div class="form-group row">
-          <label for="cmbEstadoCivil">Estado Civil :</label>
-          <input id="cmbEstadoCivil" class="form-control">
+          <label for="txtConyugue">Conyuge :</label>
+          <div style ="width: 190px">
+               <input id="txtConyugue" class="form-control input-sm">
+          </div>
+          <label for="txtPadre">Padre :</label>
+          <div style ="width: 190px">
+               <input id="txtPadre" class="form-control input-sm">
+          </div>
+          <label for="txtMadre">Madre :</label>
+          <div style ="width: 190px">
+               <input id="txtMadre" class="form-control input-sm">
+          </div>
+     </div>
+     <div class="form-group row">
+          <label for="txtDireccionEmergencia">Dirección de emergencia :</label>          
+          <input id="txtDireccionEmergencia" class="form-control input-sm">
      </div>
 
 </fieldset>
@@ -164,6 +181,10 @@ function loadData() {
     $("#cmbCalzado").data('kendoComboBox').value('<?php echo $cliente['cod_datos_calzado'] ?>')
     $("#cmbGorra").data('kendoComboBox').value('<?php echo $cliente['cod_datos_gorra'] ?>')
     $("#cmbEstadoCivil").data('kendoComboBox').value('<?php echo $cliente['cod_datos_estado_civil'] ?>')
+    $("#txtConyugue").val('<?php echo $cliente['conyuge'] ?>')
+    $("#txtPadre").val('<?php echo $cliente['padre'] ?>')
+    $("#txtMadre").val('<?php echo $cliente['madre'] ?>')
+    $("#txtDireccionEmergencia").val('<?php echo $cliente['direccion_emergencia'] ?>')
 }
 function onClick() {
      event.preventDefault();
@@ -183,11 +204,15 @@ function onClick() {
         fecha_asc:      formatDate($("#dtFechaAscenso").data("kendoDatePicker").value()),
         estatura:       $("#txtEstatura").val(),
         peso:           $("#txtPeso").val(),
-        cod_camisa:     $("#cmbCamisa").val(),
-        cod_pantalon:   $("#cmbPantalon").val(),
-        cod_calzado:    $("#cmbCalzado").val(),
-        cod_gorra:      $("#cmbGorra").val(),
-        cod_estado_civil: $("#cmbEstadoCivil").val(),
+        cod_camisa:     $("#cmbCamisa").data("kendoComboBox").value(),
+        cod_pantalon:   $("#cmbPantalon").data("kendoComboBox").value(),
+        cod_calzado:    $("#cmbCalzado").data("kendoComboBox").value(),
+        cod_gorra:      $("#cmbGorra").data("kendoComboBox").value(),
+        cod_estado_civil: $("#cmbEstadoCivil").data("kendoComboBox").value(),
+        conyuge: $("#txtConyugue").val(),
+        padre: $("#txtPadre").val(),
+        madre: $("#txtMadre").val(),
+        direccion_emergencia: $("#txtDireccionEmergencia").val(),
     }).done(function( data ) {
         data = $.parseJSON(data);
         mensaje('Actualizacion','Actualizacion completada');
