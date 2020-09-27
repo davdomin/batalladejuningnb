@@ -53,10 +53,27 @@
           </div>
      </div>
      <div class="form-group row">
-          <label for="txtEstatura"> : Estatura</label>
+          <label for="txtEstatura">Estatura:</label>
           <div style ="width: 100px">
                <input id="txtEstatura" class="form-control input-sm">
           </div>
+          <label for="txtPeso">Peso:</label>
+          <div style ="width: 100px">
+               <input id="txtPeso" class="form-control input-sm">
+          </div>
+          <label for="cmbCamisa">Talla camisa :</label>
+          <input id="cmbCamisa" class="form-control">
+
+     </div>
+     <div class="form-group row">
+          <label for="cmbPantalon">Talla pantalon :</label>
+          <input id="cmbPantalon" class="form-control">
+
+          <label for="cmbCalzado">Talla calzado :</label>
+          <input id="cmbCalzado" class="form-control">
+
+          <label for="cmbGorra">Talla gorra :</label>
+          <input id="cmbGorra" class="form-control">
 
      </div>
 </fieldset>
@@ -95,6 +112,26 @@ $(function() {
         dataTextField: "nombre",
         dataValueField: "id"
     }); 
+    $("#cmbCamisa").kendoComboBox({
+        dataSource: getDataSource(C_TALLA_CAMISA),
+        dataTextField: "nombre",
+        dataValueField: "id"
+    }); 
+    $("#cmbPantalon").kendoComboBox({
+        dataSource: getDataSource(C_TALLA_PANTALON),
+        dataTextField: "nombre",
+        dataValueField: "id"
+    }); 
+    $("#cmbCalzado").kendoComboBox({
+        dataSource: getDataSource(C_TALLA_CALZADO),
+        dataTextField: "nombre",
+        dataValueField: "id"
+    }); 
+    $("#cmbGorra").kendoComboBox({
+        dataSource: getDataSource(C_TALLA_GORRA),
+        dataTextField: "nombre",
+        dataValueField: "id"
+    }); 
     loadData()
 })
 function loadData() {
@@ -112,6 +149,11 @@ function loadData() {
     $("#txtUnidad").val('<?php echo $cliente['unidad'] ?>')
     $("#dtFechaAscenso").data('kendoDatePicker').value('<?php echo $cliente['fecha_asc'] ?>')
     $("#txtEstatura").val('<?php echo $cliente['estatura'] ?>')
+    $("#txtPeso").val('<?php echo $cliente['peso'] ?>')
+    $("#cmbCamisa").data('kendoComboBox').value('<?php echo $cliente['cod_datos_camisa'] ?>')
+    $("#cmbPantalon").data('kendoComboBox').value('<?php echo $cliente['cod_datos_pantalon'] ?>')
+    $("#cmbCalzado").data('kendoComboBox').value('<?php echo $cliente['cod_datos_calzado'] ?>')
+    $("#cmbGorra").data('kendoComboBox').value('<?php echo $cliente['cod_datos_gorra'] ?>')
 }
 function onClick() {
      event.preventDefault();
@@ -130,6 +172,11 @@ function onClick() {
         unidad:         $("#txtUnidad").val(),
         fecha_asc:      formatDate($("#dtFechaAscenso").data("kendoDatePicker").value()),
         estatura:       $("#txtEstatura").val(),
+        peso:           $("#txtPeso").val(),
+        cod_camisa:           $("#cmbCamisa").val(),
+        cod_pantalon:           $("#cmbPantalon").val(),
+        cod_calzado:           $("#cmbCalzado").val(),
+        cod_gorra:           $("#cmbGorra").val(),
     }).done(function( data ) {
         data = $.parseJSON(data);
         mensaje('Actualizacion','Actualizacion completada');

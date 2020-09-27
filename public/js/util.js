@@ -6,6 +6,10 @@ const C_JERARQUIA = 6;
 const C_ESTADOS = 7;
 const C_CARGO = 8;
 const C_GRADO = 9;
+const C_TALLA_CAMISA = 10;
+const C_TALLA_PANTALON =  11;
+const C_TALLA_CALZADO =  12;
+const C_TALLA_GORRA =  13;
 
 function getDataSource(cod_clasificacion, pre='../') {
 
