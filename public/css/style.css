@@ -2,10 +2,14 @@ h1 {
 	font-family: sans-serif;
 	font-size: 40px;
 }
+label {
+	padding-right: 9px;
+	padding-left: 15px;
+}
 body {
-	background-color: rgb(12, 12, 12);
+	background-color:#C0C0C0;	
 	font-family: sans-serif;
-	color: darkgray;
+	color: rgba(0, 0, 0, 0.911);
 }
 #for_login {
 	width: 40%;
@@ -13,9 +17,6 @@ body {
 .importante {
 	color: yellow;
 	text-shadow: 2px 2px #ff0000;
-}
-.input-field {
-	padding-top: 15px !important;
 }
 .header {
 	background-color: rgb(12, 12, 12);
@@ -43,51 +44,52 @@ body {
 	position:relative;	
 	margin-left: 20px;	
 }
-
 #total_acumulado {	
 	display: inline;	
 	padding-left: 25px;
 }
-
 .dropdown-item {
 	cursor: pointer;
 }
+.input-field {
+	padding-top: 15px !important;
+}
+
 
 #btnGuardar {
 	color: red !important;
 }
-
 .bg-light {
 	color:white;
 	background-color: red !important;
 }
-
 .navbar-light .navbar-nav .nav-link {
 	color:white !important;
 	font-weight: 500;
 }
-
 .navbar-brand {
 	color: yellow !important;
 }
-
 #for_login {
 	margin:  0px auto; 
 	display: block;
 	width:80% !important;
 }
-
 .boton-pequeno {
 	width: 120px;
 	padding-left:10px;
 }
-
 .img-centro {
 	padding-top: 100px;
 }
-
 #txtSaldo {
 	border:  1px solid #E9ECEF;  
 	height: 35px;
 	border-radius: 4px 3px 6px / 2px 4px;
+}
+.spacer {
+	width: 50px;	
+}
+.titulo-pagina {
+	margin-top: 50px;
 }

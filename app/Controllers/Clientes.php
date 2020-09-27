@@ -19,7 +19,19 @@ class Clientes extends BaseController
 	}
 	
 	public function actualizar()	{
-		return view('backoffice/actualizar-datos');
+		$session = session();
+		$clientesModel = new ClientesModel();
+		$cod_usuario = $session->get("cod_usuario");
+		$userModel = new UserModel($db);
+		$user = $userModel->getById($cod_usuario);
+		$cliente  = $clientesModel->getByUser($cod_usuario);
+		$data = array(
+			'cod_cliente' => $cliente["id"],
+			'cedula'	  => $cliente["cedula"],
+			'nombres' 	  => $cliente["nombres"] . ' ' . $cliente["apellidos"],
+			'cliente'     => $cliente
+		);
+		return view('backoffice/actualizar-datos', $data);
 	}
 
 	public function depositar() {
@@ -30,8 +42,7 @@ class Clientes extends BaseController
 		$mail_admin = $datosModel->getDatosByKey ('MAIL_ADMIN')[0]->nombre;
 		$clientesModel = new ClientesModel($db);
 		$user = $userModel->getById($cod_usuario);
-		$cliente  =  $clientesModel->getByUser($cod_usuario);
-		
+		$cliente  =  $clientesModel->getByUser($cod_usuario);		
 		
 		$data = array(
 			'nombre_usuario' => $user['name'],
@@ -116,7 +127,7 @@ class Clientes extends BaseController
 		
 
 		$data = [
-		  'cod_cliente' => $cod_cliente,
+		  'cod_cliente' => $cod_cliexnte,
 		  'cod_datos_banco' => $cod_banco,
           'monto' => $monto,
 		  'referencia' => $referencia,
@@ -156,6 +167,63 @@ class Clientes extends BaseController
 		return json_encode($abonosModel->insert($data));		
 	}
 
+	public function actualizar_datos(){
+		header('Content-Type: application/json');
+		$userModel = new UserModel($db);
+		$clientesModel = new ClientesModel($db);
+
+		$id = $_POST['cod_cliente'];
+		$cod_grupo = $_POST['cod_grupo'];
+		$cod_jerarquia = $_POST['cod_jerarquia'];
+		$cod_lugar_nac = $_POST['cod_lugar_nac'];
+		$fecha_nac = $_POST['fecha_nac'];
+		$telefono_fijo = $_POST['telefono_fijo'];
+		$cod_cargo = $_POST['cod_cargo'];
+		$cod_grado = $_POST['cod_grado'];
+		$especialidad = $_POST['especialidad'];
+		$unidad = $_POST['unidad'];
+		$fecha_asc = $_POST['fecha_asc'];
+		$estatura = $_POST['estatura'];
+		$peso = $_POST['peso'];
+		$cod_camisa = $_POST['cod_camisa'];
+		$cod_pantalon = $_POST['cod_pantalon'];
+		$cod_calzado = $_POST['cod_calzado'];
+		$cod_gorra = $_POST['cod_gorra'];
+		$cod_estado_civil = $_POST['cod_estado_civil'];
+
+		$conyuge = $_POST['conyuge'];
+		$padre = $_POST['padre'];
+		$madre = $_POST['madre'];
+		$direccion_emergencia = $_POST['direccion_emergencia'];
+
+
+		$data = [
+			'cod_datos_grupo' => $cod_grupo,
+			'cod_datos_jerarquia' => $cod_jerarquia,
+			'cod_datos_lugar_nac' => $cod_lugar_nac,
+			'fecha_nac' => $fecha_nac,
+			'telefono_fijo' => $telefono_fijo,
+			'cod_datos_cargo' => $cod_cargo,
+			'cod_datos_grado' => $cod_grado,
+			'especialidad' => $especialidad,
+			'unidad' => $unidad,
+			'fecha_asc' => $fecha_asc,
+			'estatura' => $estatura,
+			'peso' => $peso,
+			'cod_datos_camisa' => $cod_camisa,
+			'cod_datos_pantalon' => $cod_pantalon,
+			'cod_datos_calzado' => $cod_calzado,
+			'cod_datos_gorra' => $cod_gorra,
+			'cod_datos_estado_civil' => $cod_estado_civil,
+			'conyuge' => $conyuge,
+			'padre' => $padre,
+			'madre' => $madre,
+			'direccion_emergencia' => $direccion_emergencia
+		];
+
+		return json_encode($clientesModel->update($id, $data));
+	}
+
 	public function guardar()	{
 		header('Content-Type: application/json');
 		$userModel = new UserModel($db);
@@ -168,9 +236,7 @@ class Clientes extends BaseController
 		$apellido = $_POST['apellido'];
 		$direccion = $_POST['direccion'];
 		$telefono = $_POST['telefono'];
-		$cod_sexo = $_POST['cod_sexo'];
-		$cod_grupo = $_POST['cod_grupo'];
-		
+		$cod_sexo = $_POST['cod_sexo'];		
 		
 		$nombreCompleto = $nombre .' '.$apellido;
 		$data = [
@@ -190,7 +256,7 @@ class Clientes extends BaseController
 		  'cod_datos_sexo' => $cod_sexo,
 		  'cod_datos_grupo' => $cod_grupo,
 		];		
-		return json_encode($clientesModel->insert($data));		
+		return json_encode($clientesModel->insert($data));
 	}
 
 	public function enviarMail($subject, $content, $to) {

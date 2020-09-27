@@ -22,7 +22,7 @@
          <link rel="stylesheet" href="../css/style.css">
     </head>
 <body>
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <a class="navbar-brand" href="#">BJGNB</a>
        <div class="nav-wrappers">
           <ul id="lista_menu" class='navbar-nav mr-auto'></ul>          
@@ -65,7 +65,7 @@
    function cargar(pagina, titulo) {
     pagina= '../'+pagina;    
     $("#pagina").load(pagina, ()=>{
-      $("#pagina").html( "<h2>"+titulo+"</h2>"+ $("#pagina").html());
+      $("#pagina").html( "<h2 class='titulo-pagina'>"+titulo+"</h2>"+ $("#pagina").html());
     });    
    }
    

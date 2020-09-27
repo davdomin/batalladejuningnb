@@ -9,13 +9,21 @@ class ClientesModel extends Model
     protected $primaryKey = 'id';
 
     protected $returnType     = 'array';
-    protected $allowedFields = ['cedula','cod_usuario','nombres','apellidos', 'direccion','telefono','cod_datos_sexo', 'cod_datos_grupo'];
+    protected $allowedFields = [
+        'cedula','cod_usuario','nombres','apellidos', 'direccion','telefono','cod_datos_sexo', 
+        'cod_datos_grupo', 'cod_datos_jerarquia','cod_datos_lugar_nac', 'fecha_nac','telefono_fijo',
+        'cod_datos_cargo', 'cod_datos_grado', 'especialidad', 'unidad', 'fecha_asc', 'estatura',
+        'peso', 'cod_datos_camisa',  'cod_datos_pantalon',  'cod_datos_calzado', 'cod_datos_gorra',
+        'cod_datos_estado_civil', 'conyuge', 'padre', 'madre', 'direccion_emergencia'
+
+
+    ];
 
    public function __construct(){
         parent::__construct();        
     }
-    public function getByUser($cod_usuario) {        
-        $cliente = $this->where('id',$cod_usuario)->first();
+    public function getByUser($cod_usuario) {
+        $cliente = $this->where('cod_usuario',$cod_usuario)->first();
         return $cliente;
     }
 
