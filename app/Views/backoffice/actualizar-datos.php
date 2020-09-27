@@ -28,23 +28,22 @@
           <label for="dtFechaNac">Fecha de Nacimiento:</label>
           <div style ="width: 190px">
                <input id="dtFechaNac" value="01/01/2002" title="datepicker" class="form-control"/>
-          <div>
+          </div>
      </div>
      <div class="form-group row">
+          <label for="cmbGrado">Grado de Instrucción :</label>
+          <input id="cmbGrado" class="form-control">
           <label for="txtTelefonoFijo">Teléfono Fijo :</label>
-          <input id="txtTelefonoFijo" class="form-control">
+          <div style ="width: 190px">
+               <input id="txtTelefonoFijo" class="form-control input-sm">
+          </div>
      </div>
 </fieldset>
 <button id="btnGuardar" class='btn-primary'>Guardar</button>
 </div>
 <script>
 $(function() {
-     $("#dtFechaNac").kendoDatePicker({
-        start: 'year',
-        depth: 'day',
-        format: 'dd/MM/yyyy',
-        dateInput: true
-     }); 
+     $("#dtFechaNac").kendoDatePicker({ start: 'year', depth: 'day', format: 'dd/MM/yyyy',dateInput: true }); 
      $("#btnGuardar").kendoButton({
         click: onClick
      });
@@ -68,6 +67,11 @@ $(function() {
         dataTextField: "nombre",
         dataValueField: "id"
     }); 
+    $("#cmbGrado").kendoComboBox({
+        dataSource: getDataSource(C_GRADO),
+        dataTextField: "nombre",
+        dataValueField: "id"
+    }); 
     loadData()
 })
 function loadData() {
@@ -80,6 +84,7 @@ function loadData() {
     $("#dtFechaNac").data('kendoDatePicker').value('<?php echo $cliente['fecha_nac'] ?>')
     $("#txtTelefonoFijo").val('<?php echo $cliente['telefono_fijo'] ?>')
     $("#cmbCargo").data('kendoComboBox').value('<?php echo $cliente['cod_datos_cargo'] ?>')
+    $("#cmbGrado").data('kendoComboBox').value('<?php echo $cliente['cod_datos_grado'] ?>')
 }
 function onClick() {
      event.preventDefault();
@@ -92,7 +97,8 @@ function onClick() {
         cod_lugar_nac:  $("#cmbNacimiento").data("kendoComboBox").value(),
         fecha_nac:      formatDate($("#dtFechaNac").data("kendoDatePicker").value()),
         telefono_fijo:  $("#txtTelefonoFijo").val(),
-        cod_cargo: $("#cmbCargo").data("kendoComboBox").value(),
+        cod_cargo:      $("#cmbCargo").data("kendoComboBox").value(),
+        cod_grado:      $("#cmbGrado").data("kendoComboBox").value(),
     }).done(function( data ) {
         data = $.parseJSON(data);
         mensaje('Actualizacion','Actualizacion completada');

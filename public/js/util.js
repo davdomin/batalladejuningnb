@@ -5,6 +5,7 @@ const C_ESTADO_DEPOSITO = 4;
 const C_JERARQUIA = 6;
 const C_ESTADOS = 7;
 const C_CARGO = 8;
+const C_GRADO = 9;
 
 function getDataSource(cod_clasificacion, pre='../') {
 
