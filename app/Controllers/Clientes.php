@@ -189,7 +189,8 @@ class Clientes extends BaseController
 		$cod_camisa = $_POST['cod_camisa'];
 		$cod_pantalon = $_POST['cod_pantalon'];
 		$cod_calzado = $_POST['cod_calzado'];
-		$cod_gorra= $_POST['cod_gorra'];
+		$cod_gorra = $_POST['cod_gorra'];
+		$cod_estado_civil = $_POST['cod_estado_civil'];
 
 		$data = [
 			'cod_datos_grupo' => $cod_grupo,
@@ -208,6 +209,7 @@ class Clientes extends BaseController
 			'cod_datos_pantalon' => $cod_pantalon,
 			'cod_datos_calzado' => $cod_calzado,
 			'cod_datos_gorra' => $cod_gorra,
+			'cod_datos_estado_civil' => $cod_estado_civil
 		];
 
 		return json_encode($clientesModel->update($id, $data));

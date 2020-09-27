@@ -10,6 +10,9 @@ const C_TALLA_CAMISA = 10;
 const C_TALLA_PANTALON =  11;
 const C_TALLA_CALZADO =  12;
 const C_TALLA_GORRA =  13;
+const C_ESTADO_CIVIL =  14;
+
+
 
 function getDataSource(cod_clasificacion, pre='../') {
 

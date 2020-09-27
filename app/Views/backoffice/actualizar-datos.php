@@ -63,7 +63,6 @@
           </div>
           <label for="cmbCamisa">Talla camisa :</label>
           <input id="cmbCamisa" class="form-control">
-
      </div>
      <div class="form-group row">
           <label for="cmbPantalon">Talla pantalon :</label>
@@ -74,8 +73,12 @@
 
           <label for="cmbGorra">Talla gorra :</label>
           <input id="cmbGorra" class="form-control">
-
      </div>
+     <div class="form-group row">
+          <label for="cmbEstadoCivil">Estado Civil :</label>
+          <input id="cmbEstadoCivil" class="form-control">
+     </div>
+
 </fieldset>
 <button id="btnGuardar" class='btn-primary'>Guardar</button>
 </div>
@@ -132,6 +135,12 @@ $(function() {
         dataTextField: "nombre",
         dataValueField: "id"
     }); 
+    $("#cmbEstadoCivil").kendoComboBox({
+        dataSource: getDataSource(C_ESTADO_CIVIL),
+        dataTextField: "nombre",
+        dataValueField: "id"
+    }); 
+    
     loadData()
 })
 function loadData() {
@@ -154,6 +163,7 @@ function loadData() {
     $("#cmbPantalon").data('kendoComboBox').value('<?php echo $cliente['cod_datos_pantalon'] ?>')
     $("#cmbCalzado").data('kendoComboBox').value('<?php echo $cliente['cod_datos_calzado'] ?>')
     $("#cmbGorra").data('kendoComboBox').value('<?php echo $cliente['cod_datos_gorra'] ?>')
+    $("#cmbEstadoCivil").data('kendoComboBox').value('<?php echo $cliente['cod_datos_estado_civil'] ?>')
 }
 function onClick() {
      event.preventDefault();
@@ -173,10 +183,11 @@ function onClick() {
         fecha_asc:      formatDate($("#dtFechaAscenso").data("kendoDatePicker").value()),
         estatura:       $("#txtEstatura").val(),
         peso:           $("#txtPeso").val(),
-        cod_camisa:           $("#cmbCamisa").val(),
-        cod_pantalon:           $("#cmbPantalon").val(),
-        cod_calzado:           $("#cmbCalzado").val(),
-        cod_gorra:           $("#cmbGorra").val(),
+        cod_camisa:     $("#cmbCamisa").val(),
+        cod_pantalon:   $("#cmbPantalon").val(),
+        cod_calzado:    $("#cmbCalzado").val(),
+        cod_gorra:      $("#cmbGorra").val(),
+        cod_estado_civil: $("#cmbEstadoCivil").val(),
     }).done(function( data ) {
         data = $.parseJSON(data);
         mensaje('Actualizacion','Actualizacion completada');
