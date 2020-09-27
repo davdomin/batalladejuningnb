@@ -64,7 +64,7 @@ function onClick() {
         telefono:  $("#txtTelefono").val(),
         email:     $("#txtEmail").val(),
         password:  $("#txtPassword-crear").val(),
-        cod_sexo:  $("#cmbSexo").data("kendoComboBox").value()            
+        cod_sexo:  $("#cmbSexo").data("kendoComboBox").value()        
     }).done(function( data ) {
         data = $.parseJSON(data);
         mensaje('Clientes','Cliente registrado');
