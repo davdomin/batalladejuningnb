@@ -1,24 +1,20 @@
 <?php //echo var_dump($cliente); die(); ?>
 <div class="container">
 <fieldset>
-<div class="form-group row">
+<div class="form-group ">
      <input id="hdnCliente" class="form-control input-sm" readonly  type ="hidden">
-     <div class="col-xs-1">
-          <label for="txtCedula">Cédula :</label>
-          <input id="txtCedula" class="form-control input-sm" readonly >
-     </div>
-     <div class ="spacer"></div>
-     <div class="col-xs-4">
-          <label for="txtNombre">Nombres:</label>
-          <input id="txtNombre" class="form-control" readonly >
-     </div>
+     <label for="txtCedula">Cédula :</label>
+     <input id="txtCedula" class="form-control input-sm" readonly >
+     <div class ="spacer"></div>    
+     <label for="txtNombre">Nombres:</label>
+     <input id="txtNombre" class="form-control input-sm" readonly >
 </div>
 </fieldset>
 <fieldset>
-<div class='col-sm-12 pb-3'>
-    <hr>
-</div>
-<div class="form-group row">
+     <div class='col-sm-12 pb-3'>
+          <hr>
+     </div>
+     <div class="form-group row">
           <label for="cmbGrupo">Grupo Sanguineo :</label>
           <input id="cmbGrupo" class="form-control">
           <label for="cmbJerarquia">Jerarquía :</label>
@@ -26,11 +22,9 @@
           <label for="cmbNacimiento">Lugar de nacimiento :</label>
           <input id="cmbNacimiento" class="form-control">    
      </div>
-</div>
-</   fieldset>
+</fieldset>
 <button id="btnGuardar" class='btn-primary'>Guardar</button>
 </div>
-
 <script>
 $(function() { 
      $("#btnGuardar").kendoButton({
