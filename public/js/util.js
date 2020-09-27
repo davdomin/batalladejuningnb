@@ -3,6 +3,7 @@ const C_GRUPO_SANGUINEO = 2;
 const C_BANCO = 3;
 const C_ESTADO_DEPOSITO = 4;
 const C_JERARQUIA = 6;
+const C_ESTADOS = 7;
 
 function getDataSource(cod_clasificacion, pre='../') {
 

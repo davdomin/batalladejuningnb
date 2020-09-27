@@ -23,9 +23,11 @@
           <input id="cmbGrupo" class="form-control">
           <label for="cmbJerarquia">Jerarquía :</label>
           <input id="cmbJerarquia" class="form-control">    
+          <label for="cmbNacimiento">Lugar de nacimiento :</label>
+          <input id="cmbNacimiento" class="form-control">    
      </div>
 </div>
-</fieldset>
+</   fieldset>
 <button id="btnGuardar" class='btn-primary'>Guardar</button>
 </div>
 
@@ -44,6 +46,11 @@ $(function() {
         dataTextField: "nombre",
         dataValueField: "id"
     }); 
+    $("#cmbNacimiento").kendoComboBox({
+        dataSource: getDataSource(C_ESTADOS),
+        dataTextField: "nombre",
+        dataValueField: "id"
+    }); 
     loadData()
 })
 function loadData() {
@@ -52,6 +59,7 @@ function loadData() {
     $("#txtNombre").val('<?php echo $nombres; ?>')
     $("#cmbGrupo").val(<?php echo $cliente['cod_datos_grupo'] ?>)
     $("#cmbJerarquia").val(<?php echo $cliente['cod_datos_jerarquia'] ?>)
+    $("#cmbNacimiento").val(<?php echo $cliente['cod_datos_lugar_nac'] ?>)    
 }
 function onClick() {
      event.preventDefault();
@@ -61,6 +69,7 @@ function onClick() {
         cod_cliente:    $("#hdnCliente").val(),
         cod_grupo:      $("#cmbGrupo").data("kendoComboBox").value(),
         cod_jerarquia:  $("#cmbJerarquia").data("kendoComboBox").value(),
+        cod_lugar_nac:  $("#cmbNacimiento").data("kendoComboBox").value(),
     }).done(function( data ) {
         data = $.parseJSON(data);
         mensaje('Actualizacion','Actualizacion completada');

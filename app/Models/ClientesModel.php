@@ -9,7 +9,10 @@ class ClientesModel extends Model
     protected $primaryKey = 'id';
 
     protected $returnType     = 'array';
-    protected $allowedFields = ['cedula','cod_usuario','nombres','apellidos', 'direccion','telefono','cod_datos_sexo', 'cod_datos_grupo', 'cod_datos_jerarquia'];
+    protected $allowedFields = [
+        'cedula','cod_usuario','nombres','apellidos', 'direccion','telefono','cod_datos_sexo', 
+        'cod_datos_grupo', 'cod_datos_jerarquia','cod_datos_lugar_nac'
+    ];
 
    public function __construct(){
         parent::__construct();        
