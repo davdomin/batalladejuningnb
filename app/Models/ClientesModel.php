@@ -11,7 +11,8 @@ class ClientesModel extends Model
     protected $returnType     = 'array';
     protected $allowedFields = [
         'cedula','cod_usuario','nombres','apellidos', 'direccion','telefono','cod_datos_sexo', 
-        'cod_datos_grupo', 'cod_datos_jerarquia','cod_datos_lugar_nac', 'fecha_nac','telefono_fijo'
+        'cod_datos_grupo', 'cod_datos_jerarquia','cod_datos_lugar_nac', 'fecha_nac','telefono_fijo',
+        'cod_datos_cargo'
     ];
 
    public function __construct(){
