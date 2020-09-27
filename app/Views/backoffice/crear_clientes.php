@@ -24,10 +24,6 @@
         <label for="cmbSexo">Sexo :</label>
         <input id="cmbSexo" class="form-control">
     </div>
-    <div class="form-group">
-        <label for="cmbGrupo">Grupo Sanguineo :</label>
-        <input id="cmbGrupo" class="form-control">
-    </div>
     <fieldset>
             <div class="form-group">
                 <label for="txtEmail">Correo Electrónico:</label>
@@ -53,33 +49,28 @@
   </div>
 </div>
 
-
-
 <script>
-function onClick() {    
+function onClick() {
     if  ($("#txtPassword-confirmar").val() !=  $("#txtPassword-crear").val()) {
         $("#msgToast").html("Las contraseñas no coinciden");
         $('.toast').toast('show');
         return;
-    } else {
+    } 
+    $.post( "Clientes/guardar", { 
+        cedula:    $("#txtCedula").val(),
+        nombre:    $("#txtNombre").val(),
+        apellido:  $("#txtApellidos").val(),
+        direccion: $("#txtDireccion").val(),
+        telefono:  $("#txtTelefono").val(),
+        email:     $("#txtEmail").val(),
+        password:  $("#txtPassword-crear").val(),
+        cod_sexo:  $("#cmbSexo").data("kendoComboBox").value()            
+    }).done(function( data ) {
+        data = $.parseJSON(data);
+        mensaje('Clientes','Cliente registrado');
         
-    
-        $.post( "Clientes/guardar", { 
-            cedula:    $("#txtCedula").val(),
-            nombre:    $("#txtNombre").val(),
-            apellido:  $("#txtApellidos").val(),
-            direccion: $("#txtDireccion").val(),
-            telefono:  $("#txtTelefono").val(),
-            email:     $("#txtEmail").val(),
-            password:  $("#txtPassword-crear").val(),
-            cod_sexo:  $("#cmbSexo").data("kendoComboBox").value(),
-            cod_grupo:  $("#cmbGrupo").data("kendoComboBox").value(),
-        }).done(function( data ) {
-            data = $.parseJSON(data);
-            mensaje('Clientes','Cliente registrado');
-            
-        });     
-    }   
+    });     
+      
 }
 $(function() { //Cuando la pagina termina de cargar
     $("#fecha").kendoDatePicker();    
@@ -91,12 +82,5 @@ $(function() { //Cuando la pagina termina de cargar
         dataTextField: "nombre",
         dataValueField: "id"
     });
-
-    $("#cmbGrupo").kendoComboBox({
-        dataSource: getDataSource(C_GRUPO_SANGUINEO,''),
-        dataTextField: "nombre",
-        dataValueField: "id"
-    });
-    
 });
 </script>

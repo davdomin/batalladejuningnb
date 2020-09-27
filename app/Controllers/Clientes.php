@@ -19,7 +19,18 @@ class Clientes extends BaseController
 	}
 	
 	public function actualizar()	{
-		return view('backoffice/actualizar-datos');
+		$session = session();
+		$clientesModel = new ClientesModel();
+		$cod_usuario = $session->get("cod_usuario");
+		$userModel = new UserModel($db);
+		$user = $userModel->getById($cod_usuario);
+		$cliente  = $clientesModel->getByUser($cod_usuario);
+		$data = array(
+			'cod_cliente' => $cliente["id"],
+			'cedula'	  => $cliente["cedula"],
+			'nombres' 	  => $cliente["nombres"] . ' ' . $cliente["apellidos"]			
+		);
+		return view('backoffice/actualizar-datos', $data);
 	}
 
 	public function depositar() {
@@ -30,8 +41,7 @@ class Clientes extends BaseController
 		$mail_admin = $datosModel->getDatosByKey ('MAIL_ADMIN')[0]->nombre;
 		$clientesModel = new ClientesModel($db);
 		$user = $userModel->getById($cod_usuario);
-		$cliente  =  $clientesModel->getByUser($cod_usuario);
-		
+		$cliente  =  $clientesModel->getByUser($cod_usuario);		
 		
 		$data = array(
 			'nombre_usuario' => $user['name'],
@@ -116,7 +126,7 @@ class Clientes extends BaseController
 		
 
 		$data = [
-		  'cod_cliente' => $cod_cliente,
+		  'cod_cliente' => $cod_cliexnte,
 		  'cod_datos_banco' => $cod_banco,
           'monto' => $monto,
 		  'referencia' => $referencia,
@@ -156,6 +166,23 @@ class Clientes extends BaseController
 		return json_encode($abonosModel->insert($data));		
 	}
 
+	public function actualizar_datos(){
+		header('Content-Type: application/json');
+		$userModel = new UserModel($db);
+		$clientesModel = new ClientesModel($db);
+
+		$cod_grupo = $_POST['cod_grupo'];
+		$cod_jerarquia = $_POST['cod_jerarquia'];
+		$id = $_POST['cod_cliente'];
+
+		$data = [
+			'cod_datos_grupo' => $cod_grupo,
+			'cod_datos_jerarquia' => $cod_jerarquia,
+		];
+
+		return json_encode($clientesModel->update($id, $data));
+	}
+
 	public function guardar()	{
 		header('Content-Type: application/json');
 		$userModel = new UserModel($db);
@@ -168,9 +195,7 @@ class Clientes extends BaseController
 		$apellido = $_POST['apellido'];
 		$direccion = $_POST['direccion'];
 		$telefono = $_POST['telefono'];
-		$cod_sexo = $_POST['cod_sexo'];
-		$cod_grupo = $_POST['cod_grupo'];
-		
+		$cod_sexo = $_POST['cod_sexo'];		
 		
 		$nombreCompleto = $nombre .' '.$apellido;
 		$data = [
@@ -190,7 +215,7 @@ class Clientes extends BaseController
 		  'cod_datos_sexo' => $cod_sexo,
 		  'cod_datos_grupo' => $cod_grupo,
 		];		
-		return json_encode($clientesModel->insert($data));		
+		return json_encode($clientesModel->insert($data));
 	}
 
 	public function enviarMail($subject, $content, $to) {
