@@ -9,7 +9,7 @@ label {
 body {
 	background-color:#C0C0C0;	
 	font-family: sans-serif;
-	color: black;
+	color: rgba(0, 0, 0, 0.911);
 }
 #for_login {
 	width: 40%;
