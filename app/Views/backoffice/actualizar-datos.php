@@ -47,6 +47,11 @@
           <div style ="width: 190px">
                <input id="txtUnidad" class="form-control input-sm">
           </div>
+          <label for="dtFechaAscenso">Fecha Ult. Ascenso:</label>
+          <div style ="width: 190px">
+               <input id="dtFechaAscenso" value="01/01/2002" title="datepicker" class="form-control"/>
+          </div>
+
      </div>
 </fieldset>
 <button id="btnGuardar" class='btn-primary'>Guardar</button>
@@ -54,6 +59,8 @@
 <script>
 $(function() {
      $("#dtFechaNac").kendoDatePicker({ start: 'year', depth: 'day', format: 'dd/MM/yyyy',dateInput: true }); 
+     $("#dtFechaAscenso").kendoDatePicker({ start: 'year', depth: 'day', format: 'dd/MM/yyyy',dateInput: true }); 
+
      $("#btnGuardar").kendoButton({
         click: onClick
      });
@@ -97,6 +104,7 @@ function loadData() {
     $("#cmbGrado").data('kendoComboBox').value('<?php echo $cliente['cod_datos_grado'] ?>')
     $("#txtEspecialidad").val('<?php echo $cliente['especialidad'] ?>')
     $("#txtUnidad").val('<?php echo $cliente['unidad'] ?>')
+    $("#dtFechaAscenso").data('kendoDatePicker').value('<?php echo $cliente['fecha_asc'] ?>')
 }
 function onClick() {
      event.preventDefault();
@@ -113,6 +121,7 @@ function onClick() {
         cod_grado:      $("#cmbGrado").data("kendoComboBox").value(),
         especialidad:   $("#txtEspecialidad").val(),
         unidad:         $("#txtUnidad").val(),
+        fecha_asc:      formatDate($("#dtFechaAscenso").data("kendoDatePicker").value()),
     }).done(function( data ) {
         data = $.parseJSON(data);
         mensaje('Actualizacion','Actualizacion completada');
