@@ -175,13 +175,15 @@ class Clientes extends BaseController
 		$cod_grupo = $_POST['cod_grupo'];
 		$cod_jerarquia = $_POST['cod_jerarquia'];
 		$cod_lugar_nac = $_POST['cod_lugar_nac'];
-		$fecha_nac = $_POST['fecha_nac'];		
+		$fecha_nac = $_POST['fecha_nac'];
+		$telefono_fijo = $_POST['telefono_fijo'];
 
 		$data = [
 			'cod_datos_grupo' => $cod_grupo,
 			'cod_datos_jerarquia' => $cod_jerarquia,
 			'cod_datos_lugar_nac' => $cod_lugar_nac,
-			'fecha_nac' => $fecha_nac
+			'fecha_nac' => $fecha_nac,
+			'telefono_fijo' => $telefono_fijo
 		];
 
 		return json_encode($clientesModel->update($id, $data));

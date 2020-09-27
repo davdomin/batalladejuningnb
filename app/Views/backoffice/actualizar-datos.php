@@ -28,6 +28,10 @@
                <input id="dtFechaNac" value="01/01/2002" title="datepicker" class="form-control"/>
           <div>
      </div>
+     <div class="form-group row">
+          <label for="txtTelefonoFijo">Teléfono Fijo :</label>
+          <input id="txtTelefonoFijo" class="form-control">
+     </div>
 </fieldset>
 <button id="btnGuardar" class='btn-primary'>Guardar</button>
 </div>
@@ -67,6 +71,7 @@ function loadData() {
     $("#cmbJerarquia").data('kendoComboBox').value(<?php echo $cliente['cod_datos_jerarquia'] ?>)
     $("#cmbNacimiento").data('kendoComboBox').value(<?php echo $cliente['cod_datos_lugar_nac'] ?>)
     $("#dtFechaNac").data('kendoDatePicker').value('<?php echo $cliente['fecha_nac'] ?>')
+    $("#txtTelefonoFijo").val('<?php echo $cliente['telefono_fijo'] ?>')
 }
 function onClick() {
      event.preventDefault();
@@ -77,7 +82,8 @@ function onClick() {
         cod_grupo:      $("#cmbGrupo").data("kendoComboBox").value(),
         cod_jerarquia:  $("#cmbJerarquia").data("kendoComboBox").value(),
         cod_lugar_nac:  $("#cmbNacimiento").data("kendoComboBox").value(),
-        fecha_nac:       formatDate($("#dtFechaNac").data("kendoDatePicker").value()),
+        fecha_nac:      formatDate($("#dtFechaNac").data("kendoDatePicker").value()),
+        telefono_fijo:  $("#txtTelefonoFijo").val(),
     }).done(function( data ) {
         data = $.parseJSON(data);
         mensaje('Actualizacion','Actualizacion completada');
