@@ -7,9 +7,9 @@ label {
 	padding-left: 15px;
 }
 body {
-	background-color: rgb(12, 12, 12);
+	background-color:#C0C0C0;	
 	font-family: sans-serif;
-	color: darkgray;
+	color: black;
 }
 #for_login {
 	width: 40%;

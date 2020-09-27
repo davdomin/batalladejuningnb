@@ -28,7 +28,8 @@ class Clientes extends BaseController
 		$data = array(
 			'cod_cliente' => $cliente["id"],
 			'cedula'	  => $cliente["cedula"],
-			'nombres' 	  => $cliente["nombres"] . ' ' . $cliente["apellidos"]			
+			'nombres' 	  => $cliente["nombres"] . ' ' . $cliente["apellidos"],
+			'cliente'     => $cliente
 		);
 		return view('backoffice/actualizar-datos', $data);
 	}

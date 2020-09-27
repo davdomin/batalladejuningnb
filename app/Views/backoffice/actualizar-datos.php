@@ -1,4 +1,6 @@
+<?php //echo var_dump($cliente); die(); ?>
 <div class="container">
+<fieldset>
 <div class="form-group row">
      <input id="hdnCliente" class="form-control input-sm" readonly  type ="hidden">
      <div class="col-xs-1">
@@ -11,6 +13,8 @@
           <input id="txtNombre" class="form-control" readonly >
      </div>
 </div>
+</fieldset>
+<fieldset>
 <div class='col-sm-12 pb-3'>
     <hr>
 </div>
@@ -21,7 +25,7 @@
           <input id="cmbJerarquia" class="form-control">    
      </div>
 </div>
-
+</fieldset>
 <button id="btnGuardar" class='btn-primary'>Guardar</button>
 </div>
 
@@ -45,7 +49,9 @@ $(function() {
 function loadData() {
     $("#hdnCliente").val('<?php echo $cod_cliente; ?>')
     $("#txtCedula").val('<?php echo $cedula; ?>')
-    $("#txtNombre").val('<?php echo $nombres; ?>')    
+    $("#txtNombre").val('<?php echo $nombres; ?>')
+    $("#cmbGrupo").val(<?php echo $cliente['cod_datos_grupo'] ?>)
+    $("#cmbJerarquia").val(<?php echo $cliente['cod_datos_jerarquia'] ?>)
 }
 function onClick() {
      event.preventDefault();
