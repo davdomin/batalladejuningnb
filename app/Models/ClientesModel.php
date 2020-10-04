@@ -86,11 +86,11 @@ class ClientesModel extends Model
                 cod_cliente,
                 ch.nombre,
                 fecha_nac,	
-                cod_datos_sexo as cod_sexo, 
+                cod_datos_sexo, 
                 sx.nombre as nom_sexo 
             FROM clientes_hijos ch
-                INNER JOIN datos sx ON ch.cod_datos_sexo = sx.id 
-            WHERE ch.deleted=0 AND ch.cod_cliente = $codCliente";         
+                LEFT JOIN datos sx ON ch.cod_datos_sexo = sx.id 
+            WHERE ch.deleted=0 AND ch.cod_cliente = $codCliente";            
         $result = $this->db->query($sql);
         return  $result->getResult();
     }

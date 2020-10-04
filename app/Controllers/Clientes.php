@@ -2,13 +2,14 @@
 
 use App\Models\UserModel;
 use App\Models\ClientesModel;
+use App\Models\HijosModel;
 use App\Models\DatosModel;
 use App\Models\AbonosModel;
 
 class Clientes extends BaseController
 {
 	public function getAll() {
-		header('Content-Type: application/json');
+		h.eader('Content-Type: application/json');
 		$clientesModel = new ClientesModel();
 		return json_encode($clientesModel->getAll());
 	}
@@ -17,6 +18,31 @@ class Clientes extends BaseController
 		$codCliente = $_GET["cod_cliente"];
 		$clientesModel = new ClientesModel();
 		return json_encode($clientesModel->getHijos($codCliente));
+	}
+	public function eliminarHijo() {
+		$id = $_POST["id"];
+		$hijosModel = new HijosModel($db);
+		return json_encode($hijosModel->deleteSoft($id));	
+	}
+	public function guardarHijo() {
+		$id = $_POST["id"];
+		$data = array(
+			'nombre' => $_POST["nombre"],
+    		'cod_datos_sexo' => $_POST["cod_datos_sexo"],
+			'fecha_nac' => $_POST["fecha_nac"],
+			'cod_cliente' => $_POST["cod_cliente"],
+		);	
+		
+		$hijosModel = new HijosModel($db);
+
+		$result =null;	
+		if (strlen($id) == 0 )
+			return json_encode($hijosModel->insert($data));			
+		
+		$result =json_encode($hijosModel->updateData($data, $id));
+
+		return $result;
+
 	}
 
 
