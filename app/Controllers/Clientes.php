@@ -37,7 +37,7 @@ class Clientes extends BaseController
 
 		$result =null;	
 		if (strlen($id) == 0 )
-			return json_encode($hijosModel->insert($data));			
+			return json_encode($hijosModel->insert($data));
 		
 		$result =json_encode($hijosModel->updateData($data, $id));
 
