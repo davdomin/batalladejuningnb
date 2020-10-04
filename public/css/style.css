@@ -11,8 +11,17 @@ body {
 	font-family: sans-serif;
 	color: rgba(0, 0, 0, 0.911);
 }
+.navbar  {
+	background-color:#AA1111 !important;
+}
 #for_login {
-	width: 40%;
+	margin:  0px auto; 
+	display: block;
+	width:80% !important;
+	background-color: white	!important;
+	opacity:1.0 !important;	
+	z-index:1;
+	color:white;
 }
 .importante {
 	color: yellow;
@@ -61,7 +70,7 @@ body {
 }
 .bg-light {
 	color:white;
-	background-color: red !important;
+	/* background-color: red !important;*/
 }
 .navbar-light .navbar-nav .nav-link {
 	color:white !important;
@@ -69,11 +78,6 @@ body {
 }
 .navbar-brand {
 	color: yellow !important;
-}
-#for_login {
-	margin:  0px auto; 
-	display: block;
-	width:80% !important;
 }
 .boton-pequeno {
 	width: 120px;

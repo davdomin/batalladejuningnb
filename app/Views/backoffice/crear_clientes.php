@@ -39,21 +39,13 @@
             </div>
     </fieldset>
     <button id="btnGuardar" class='btn-primary'>Guardar</button>    
-    <div class="toast">
-    <div class="toast-header">
-      Error
-    </div>
-    <div class="toast-body">
-        <div id="msgToast" class="toast-msg"></div>
-    </div>
-  </div>
+
 </div>
 
 <script>
 function onClick() {
     if  ($("#txtPassword-confirmar").val() !=  $("#txtPassword-crear").val()) {
-        $("#msgToast").html("Las contraseñas no coinciden");
-        $('.toast').toast('show');
+        alert("Las contraseñas no coinciden");        
         return;
     } 
     $.post( "Clientes/guardar", { 
@@ -64,15 +56,15 @@ function onClick() {
         telefono:  $("#txtTelefono").val(),
         email:     $("#txtEmail").val(),
         password:  $("#txtPassword-crear").val(),
-        cod_sexo:  $("#cmbSexo").data("kendoComboBox").value()        
+        cod_sexo:  $("#cmbSexo").data("kendoComboBox").value()           
     }).done(function( data ) {
         data = $.parseJSON(data);
-        mensaje('Clientes','Cliente registrado');
-        
+        alert( 'Cliente registrado');
+        $("#content").load('./Home/session');
     });     
       
 }
-$(function() { //Cuando la pagina termina de cargar
+$(function() { //Cuando la pagina termina de cargar    
     $("#fecha").kendoDatePicker();    
     $("#btnGuardar").kendoButton({
         click: onClick
