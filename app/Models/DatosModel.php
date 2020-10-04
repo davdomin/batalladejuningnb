@@ -26,7 +26,7 @@ class DatosModel extends Model
     public function getDatos($cod_clasificacion, $prefix) {
         $sql ="SELECT id,nombre  FROM datos WHERE cod_clasificacion = $cod_clasificacion";
         if (strlen ($prefix) >0) {
-            $sql ="SELECT id as cod_". $prefix .", nombre as nom_" . $prefix ."  FROM datos WHERE cod_clasificacion = $cod_clasificacion";
+            $sql ="SELECT id as cod_datos_". $prefix .", nombre as nom_" . $prefix ."  FROM datos WHERE cod_clasificacion = $cod_clasificacion";
         }            
         $result = $this->db->query($sql);
         

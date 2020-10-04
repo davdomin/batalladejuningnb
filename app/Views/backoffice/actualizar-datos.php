@@ -108,24 +108,21 @@ $(function() {
           toolbar: [{ name: "create", text: "Agregar hijo" }],
           columns: [
             { field: "id", hidden:true },
-            { field: "cod_cliente", hidden:true },
             { field: "nombre", title: "Nombre del hijo", width:"200px"},
-            { field: "fecha_nac", title: "Fecha de Nac.",width:"210px", format:"{0:dd/MM/yyyy}"},
-            { field: "cod_sexo", title: "Sexo", width:"210px", template:"#=nom_sexo#",
+            { field: "fecha_nac", title: "Fecha de Nac.",width:"210px", template: '#= kendo.toString(fecha_nac, "dd/MM/yyyy") #'},            
+            { field: "cod_datos_sexo", title: "Sexo", width:"210px", template:"#=nom_sexo#",
                editor: function(container){
-                        var input = $("<input id='cod_sexo' name='cod_sexo'>");
+                        var input = $("<input id='cod_datos_sexo' name='cod_datos_sexo'>");
                         input.appendTo(container);
                         input.kendoDropDownList({
                               dataSource: getDataSource(C_SEXO,'../','sexo'),
                               dataTextField: "nom_sexo", 
-                              dataValueField: "cod_sexo"
+                              dataValueField: "cod_datos_sexo"
                         }).appendTo(container);
                     },
                headerAttributes: { style: "font-weight: bold;"}
             },
             { command: ["edit", "destroy"] },
-//            {filterable: false, hidden: false, title: "Aprobar", template: '<button class="k-button" style="background-color: green;" onclick="aprobar(#:cod_abono#);">Aprobar</button>', width: 100 },
-  //          {filterable: false, hidden: false, title: "Rechazar", template: '<button class="k-button" style="background-color: red;" onclick="rechazar(#:cod_abono#);">Rechazar</button>', width: 100 }
           ],
 		  dataSource: {
                     type: "json",
@@ -135,17 +132,32 @@ $(function() {
                               dataType: "json",
                               type: "GET",
                               data: {cod_cliente: <?php echo $cod_cliente; ?>}
-                    	},
+                         },
+                         create: {
+                              url: "../Clientes/guardarHijo",
+                              dataType: "json",
+                              type: "POST",
+                              data: {cod_cliente: <?php echo $cod_cliente; ?>}
+                         },
+                         update: {
+                              url: "../Clientes/guardarHijo",
+                              dataType: "json",
+                              type: "POST",
+                              data: {cod_cliente: <?php echo $cod_cliente; ?>}
+                         },
+                         destroy: {
+                              url: "../Clientes/eliminarHijo",
+                              dataType: "json",
+                              type: "POST"                              
+                         }
                     },
                     schema: {
                          model: {
                          id: "id",
                          fields: {
-                              cod_cliente: {type:"number", editable: false},                            
                               nombre: {type:"string", editable: true},
-                              fecha_nac: {type:"date", editable: true},
-                              fec_modifica: {type:"date", editable:false},
-                              cod_sexo: {type:"number", editable: true},
+                              fecha_nac: {type:"string", editable: true},
+                              cod_datos_sexo: {type:"number", editable: true},
                               nom_sexo: {type:"string", editable: true},
                          }
                          }
