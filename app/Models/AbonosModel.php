@@ -28,12 +28,4 @@ class AbonosModel extends Model
         $result = $this->db->query($sql);
         return  $result->getResult()[0]->monto;
     }
-    
-    public function getHijos($codCliente) {
-        $sql ="SELECT  id, cod_cliente,nombre,fecha_nac,sexo FROM clientes_hijos WHERE cod_cliente = $codCliente";
-        $result = $this->db->query($sql);
-        return  $result->getResult();
-    }
-
-
 }

@@ -22,9 +22,10 @@ class Home extends BaseController
 
 	public function getDataSource() {
 		header('Content-Type: application/json');
-		$cod_clasificacion  = $_POST['cod_clasificacion'];		
+		$cod_clasificacion  = $_GET['cod_clasificacion'];
+		$prefix  = $_GET['prefix'];
 		$datosModel = new DatosModel($db);
-		return json_encode($datosModel->getDatos($cod_clasificacion));
+		return json_encode($datosModel->getDatos($cod_clasificacion, $prefix));
 	}
 
 	public function getValuesByKey() {

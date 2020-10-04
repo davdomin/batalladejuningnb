@@ -14,15 +14,15 @@ const C_ESTADO_CIVIL =  14;
 
 
 
-function getDataSource(cod_clasificacion, pre='../') {
+function getDataSource(cod_clasificacion, pre='../',prefix='') {
 
         var dataSource = new kendo.data.DataSource({
                 transport: {
                     read: {                    
                         url: pre+"Home/getDataSource",
                         dataType: "json",
-                        type: "POST",
-                        data: {cod_clasificacion: cod_clasificacion}
+                        type: "GET",
+                        data: {cod_clasificacion: cod_clasificacion, prefix:prefix }
                     }               
                 },               
             });       

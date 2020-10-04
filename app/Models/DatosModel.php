@@ -23,10 +23,13 @@ class DatosModel extends Model
     protected $skipValidation     = false;
     
 
-    public function getDatos($cod_clasificacion) {
+    public function getDatos($cod_clasificacion, $prefix) {
+        $sql ="SELECT id,nombre  FROM datos WHERE cod_clasificacion = $cod_clasificacion";
+        if (strlen ($prefix) >0) {
+            $sql ="SELECT id as cod_". $prefix .", nombre as nom_" . $prefix ."  FROM datos WHERE cod_clasificacion = $cod_clasificacion";
+        }            
+        $result = $this->db->query($sql);
         
-        $sql ="SELECT * FROM datos WHERE cod_clasificacion = $cod_clasificacion";
-        $result = $this->db->query($sql);        
         return  $result->getResult();
     }
     public function getDatosByKey($key) {        

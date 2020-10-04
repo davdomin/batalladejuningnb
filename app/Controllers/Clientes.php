@@ -14,7 +14,7 @@ class Clientes extends BaseController
 	}
 	public function getHijos() {
 		header('Content-Type: application/json');
-		$codCliente = $session->get("cod_cliente");
+		$codCliente = $_GET["cod_cliente"];
 		$clientesModel = new ClientesModel();
 		return json_encode($clientesModel->getHijos($codCliente));
 	}

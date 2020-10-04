@@ -67,7 +67,7 @@ class ClientesModel extends Model
     public function getSaldoPorCliente($cod_cliente)
     {        
         $sql ="SELECT CAST(IFNULL(SUM(monto),0) as double) as monto FROM abonos WHERE cod_datos_estado IN (15,18) AND cod_cliente = $cod_cliente";            
-        $result = $this->db->query($sql);
+        $result = $this->db->query($sql);   
         return  $result->getResult()[0]->monto;
     }    
     
@@ -80,5 +80,18 @@ class ClientesModel extends Model
     }    
 
 
-
+    public function getHijos($codCliente) {
+        $sql ="SELECT 
+                ch.id, 
+                cod_cliente,
+                ch.nombre,
+                fecha_nac,	
+                cod_datos_sexo as cod_sexo, 
+                sx.nombre as nom_sexo 
+            FROM clientes_hijos ch
+                INNER JOIN datos sx ON ch.cod_datos_sexo = sx.id 
+            WHERE ch.deleted=0 AND ch.cod_cliente = $codCliente";         
+        $result = $this->db->query($sql);
+        return  $result->getResult();
+    }
 }

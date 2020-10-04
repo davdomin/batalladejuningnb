@@ -104,22 +104,51 @@
 <script>
 $(function() {
      $("#grid_hijos").kendoGrid({
+          editable: "inline",
+          toolbar: [{ name: "create", text: "Agregar hijo" }],
           columns: [
+            { field: "id", hidden:true },
             { field: "cod_cliente", hidden:true },
             { field: "nombre", title: "Nombre del hijo", width:"200px"},
-            { field: "fecha_nacimiento", title: "Fecha de Nac.",width:"110px" },            
-            { field: "sexo", title: "Sexo", width:"110px" },
-            {filterable: false, hidden: false, title: "Aprobar", template: '<button class="k-button" style="background-color: green;" onclick="aprobar(#:cod_abono#);">Aprobar</button>', width: 100 },
-            {filterable: false, hidden: false, title: "Rechazar", template: '<button class="k-button" style="background-color: red;" onclick="rechazar(#:cod_abono#);">Rechazar</button>', width: 100 }
+            { field: "fecha_nac", title: "Fecha de Nac.",width:"210px", format:"{0:dd/MM/yyyy}"},
+            { field: "cod_sexo", title: "Sexo", width:"210px", template:"#=nom_sexo#",
+               editor: function(container){
+                        var input = $("<input id='cod_sexo' name='cod_sexo'>");
+                        input.appendTo(container);
+                        input.kendoDropDownList({
+                              dataSource: getDataSource(C_SEXO,'../','sexo'),
+                              dataTextField: "nom_sexo", 
+                              dataValueField: "cod_sexo"
+                        }).appendTo(container);
+                    },
+               headerAttributes: { style: "font-weight: bold;"}
+            },
+            { command: ["edit", "destroy"] },
+//            {filterable: false, hidden: false, title: "Aprobar", template: '<button class="k-button" style="background-color: green;" onclick="aprobar(#:cod_abono#);">Aprobar</button>', width: 100 },
+  //          {filterable: false, hidden: false, title: "Rechazar", template: '<button class="k-button" style="background-color: red;" onclick="rechazar(#:cod_abono#);">Rechazar</button>', width: 100 }
           ],
 		  dataSource: {
                     type: "json",
                     transport: {
                         read: {                    
-                        	url: "../Clientes/getHijos",
-                        	dataType: "json",
-                        	type: "GET"                        	
+                              url: "../Clientes/getHijos",
+                              dataType: "json",
+                              type: "GET",
+                              data: {cod_cliente: <?php echo $cod_cliente; ?>}
                     	},
+                    },
+                    schema: {
+                         model: {
+                         id: "id",
+                         fields: {
+                              cod_cliente: {type:"number", editable: false},                            
+                              nombre: {type:"string", editable: true},
+                              fecha_nac: {type:"date", editable: true},
+                              fec_modifica: {type:"date", editable:false},
+                              cod_sexo: {type:"number", editable: true},
+                              nom_sexo: {type:"string", editable: true},
+                         }
+                         }
                     },
                     pageSize: 20
                 },
@@ -131,7 +160,7 @@ $(function() {
      $("#btnGuardar").kendoButton({
         click: onClick
      });
-     $("#cmbGrupo").kendoComboBox({
+    $("#cmbGrupo").kendoComboBox({
         dataSource: getDataSource(C_GRUPO_SANGUINEO),
         dataTextField: "nombre",
         dataValueField: "id"
