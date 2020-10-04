@@ -22,6 +22,7 @@
          <link rel="stylesheet" href="../css/style.css">
     </head>
 <body>
+    <div id="top_menu">
      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <a class="navbar-brand" href="#">BJGNB</a>
        <div class="nav-wrappers">
@@ -29,6 +30,7 @@
        </div>       
        <div id="info_tope" class="importante"> Monto Acumulado : <div id="total_acumulado"></div> </div>
       </nav>
+    </div>
 
       <div class="container">
        <div id="dialog"></div>

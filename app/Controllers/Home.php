@@ -16,8 +16,10 @@ class Home extends BaseController
 			'total_acumulado' => $abonosModel->getTotalAbonos()			
 			
 		);
-
 		return view('backoffice/menu',$data);
+	}
+	public function session()	{
+		return view('session');
 	}
 
 	public function getDataSource() {
