@@ -12,6 +12,12 @@ class Clientes extends BaseController
 		$clientesModel = new ClientesModel();
 		return json_encode($clientesModel->getAll());
 	}
+	public function getHijos() {
+		header('Content-Type: application/json');
+		$codCliente = $session->get("cod_cliente");
+		$clientesModel = new ClientesModel();
+		return json_encode($clientesModel->getHijos($codCliente));
+	}
 
 
 	public function crear()	{

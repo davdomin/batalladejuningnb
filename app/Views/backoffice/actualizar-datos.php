@@ -94,13 +94,37 @@
      <div class="form-group row">
           <label for="txtDireccionEmergencia">Dirección de emergencia :</label>          
           <input id="txtDireccionEmergencia" class="form-control input-sm">
-     </div>
-
+     </div>     
+</fieldset>
+<fieldset>
+     <div id="grid_hijos"></div>
 </fieldset>
 <button id="btnGuardar" class='btn-primary'>Guardar</button>
 </div>
 <script>
 $(function() {
+     $("#grid_hijos").kendoGrid({
+          columns: [
+            { field: "cod_cliente", hidden:true },
+            { field: "nombre", title: "Nombre del hijo", width:"200px"},
+            { field: "fecha_nacimiento", title: "Fecha de Nac.",width:"110px" },            
+            { field: "sexo", title: "Sexo", width:"110px" },
+            {filterable: false, hidden: false, title: "Aprobar", template: '<button class="k-button" style="background-color: green;" onclick="aprobar(#:cod_abono#);">Aprobar</button>', width: 100 },
+            {filterable: false, hidden: false, title: "Rechazar", template: '<button class="k-button" style="background-color: red;" onclick="rechazar(#:cod_abono#);">Rechazar</button>', width: 100 }
+          ],
+		  dataSource: {
+                    type: "json",
+                    transport: {
+                        read: {                    
+                        	url: "../Clientes/getHijos",
+                        	dataType: "json",
+                        	type: "GET"                        	
+                    	},
+                    },
+                    pageSize: 20
+                },
+	});
+
      $("#dtFechaNac").kendoDatePicker({ start: 'year', depth: 'day', format: 'dd/MM/yyyy',dateInput: true }); 
      $("#dtFechaAscenso").kendoDatePicker({ start: 'year', depth: 'day', format: 'dd/MM/yyyy',dateInput: true }); 
 
