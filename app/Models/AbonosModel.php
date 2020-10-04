@@ -24,10 +24,8 @@ class AbonosModel extends Model
 
     public function getTotalAbonos()
     {        
-        $sql ="SELECT CAST(SUM(monto) as double) as monto FROM abonos WHERE cod_datos_estado IN (15,18)";            
+        $sql ="SELECT CAST(SUM(monto) as double) as monto FROM abonos WHERE cod_datos_estado IN (15,18)";
         $result = $this->db->query($sql);
         return  $result->getResult()[0]->monto;
-    }    
-
-
+    }
 }

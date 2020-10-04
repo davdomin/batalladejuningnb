@@ -27,7 +27,7 @@
     }
 $(function() {	
 	$("#grid_depositos").kendoGrid({
-          columns: [          
+          columns: [
             { field: "cod_abono", hidden:true },
             { field: "fecha_deposito", title: "Fecha",width:"110px" },
             { field: "cliente", title: "Cliente", width:"200px"},
