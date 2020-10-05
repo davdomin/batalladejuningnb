@@ -2,6 +2,7 @@
 
 use App\Models\DatosModel;
 use App\Models\AbonosModel;
+use App\Models\ClientesModel;
 
 class Home extends BaseController
 {
@@ -10,18 +11,20 @@ class Home extends BaseController
 		$abonosModel = new AbonosModel();
 		
 		$id_login = $session->get("cod_usuario") ?  $session->get("cod_usuario") :-1;
-		//var_dump($id_login); die();
+		$clientesModel = new ClientesModel($db);
+		$cliente  =  $clientesModel->getByUser($id_login);
+
 		$data = array(
 			'id_login' => $id_login,
-			'total_acumulado' => $abonosModel->getTotalAbonos()			
+			'total_acumulado' => $abonosModel->getTotalAbonos()	,
+			'foto_guardada' => '../upload/users/'. $cliente['foto']		
 			
 		);
 		return view('backoffice/menu',$data);
 	}
-	public function session()	{
+	public function session() {
 		return view('session');
 	}
-
 	public function getDataSource() {
 		header('Content-Type: application/json');
 		$cod_clasificacion  = $_GET['cod_clasificacion'];

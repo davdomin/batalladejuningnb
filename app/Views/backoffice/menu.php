@@ -27,7 +27,10 @@
       <a class="navbar-brand" href="#">BJGNB</a>
        <div class="nav-wrappers">
           <ul id="lista_menu" class='navbar-nav mr-auto'></ul>          
-       </div>       
+       </div> 
+       <div id='cargar_imagen'>
+          <img id ="foto_cargada" class="rounded-circle"/>
+      </div>
        <div id="info_tope" class="importante"> Monto Acumulado : <div id="total_acumulado"></div> </div>
       </nav>
     </div>
@@ -53,12 +56,13 @@
   var login_path = '<?php echo env('index_url') ?>';
   var id_login = <?php echo $id_login ?>;
   
-  console.log(id_login);
+  
     if (id_login  == -1) {
       location.href = login_path;
     }
 
     $(document).ready(function(){     
+       $("#foto_cargada").attr("src", "<?php echo $foto_guardada; ?>"  );
        cargarOpciones();
        kendo.culture("en-US"); 
       $("#total_acumulado").html(kendo.toString(total, "n"));

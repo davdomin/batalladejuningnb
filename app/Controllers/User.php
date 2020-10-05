@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Models\UserModel;
+use App\Models\ClientesModel;
 
 class User extends BaseController
 {
@@ -20,6 +21,51 @@ class User extends BaseController
 		header('Content-Type: application/json');
 	    return json_encode($user);
 	}
+	public function subirFoto() {
+		$session = session();
+		$userModel = new UserModel($db);
+		$cod_usuario = $session->get("cod_usuario");
+		$clientesModel = new ClientesModel($db);
+		$cliente  =  $clientesModel->getByUser($cod_usuario);
+		$data = [
+			'cod_usuario'  => $cod_usuario,
+			'foto_guardada' => '../upload/users/'. $cliente['foto']
+
+		  ];		
+  
+		return view('backoffice/subir_foto', $data);
+	}
+
+	public function ponerFoto()
+    {
+        $config['upload_path'] = './upload/users/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 2048;
+
+		//$this->load->library('upload', $config);
+		$this->load->library('upload');
+        if (!$this->upload->do_upload('foto')) { #Aquí me refiero a "foto", el nombre que pusimos en FormData
+            $error = array('error' => $this->upload->display_errors());
+            echo json_encode($error);
+        } else {
+            echo json_encode(true);
+        }
+	}
+	public function upload() {
+		$session = session();
+		$file = $this->request->getFile('file');
+		$newName = $file->getRandomName();
+		
+		if (!$file->move('./upload/users', $newName)) 
+			return  false;
+
+		$cod_usuario = $session->get("cod_usuario");
+		$userModel = new UserModel($db);
+		$clientesModel = new ClientesModel($db);
+		$cliente  =  $clientesModel->getByUser($cod_usuario);
+		$clientesModel->updatePhoto($cliente["id"], $newName);
+		return $newName;
+    }
 	public function cerrarSesion() {
 		$session = session();
 		$login_path = env('index_url');
