@@ -10,7 +10,7 @@ class UserModel extends Model
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
-    protected $allowedFields = ['name', 'email','clave', 'cod_perfil'];
+    protected $allowedFields = ['name', 'email','clave', 'cod_perfil','aprobado','deleted'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'created_at';
@@ -44,6 +44,19 @@ class UserModel extends Model
 
     public function getById($id) {
         return $this->where('id',$id)->first();
+    }
+    public function aprobar($id) {
+        $data = [
+            'aprobado' => 1,
+          ];
+          return $this->update($id, $data);
+
+    }
+    public function rechazar($id) {
+        $data = [
+            'deleted' => 1,
+          ];
+          return $this->update($id, $data);
 
     }
 }
