@@ -44,7 +44,61 @@
          <div class="form-group">
            <div id="pagina" >
             <div class="container-fluid">
-             <img src="../img/background.jpg" class="img-fluid img-centro">
+              <div id="dashboard" style="margin-top:50px; background-color:#fff; padding:10px; ">
+              <div class="row">
+                  <div class="col-sm-3">
+                    <div id="saldo">
+                      <div class="card" style="width: 18rem;">
+                      <!--
+                        <img class="card-img-top" src="../img/money.png" alt="Card image cap">
+                        -->
+                        <div class="card-body">
+                          <h5 class="card-title">Saldo</h5>
+                          <h3 class="card-text">Bs. 65.00</h3>
+                          <button onclick="cargar('Clientes/misdepositos','Mis movimientos')" class="btn btn-primary">Ver detalle</button>
+                        </div>
+                      </div>
+                    </div> <!-- saldo -->
+                  </div>                
+                <div class="clearfix"></div>
+                <div class="col-sm-9">
+                  <div class="card" style="width: 38rem">
+                      <div class="card-body">
+                          <h3 class="card-title">Mis Datos</h3>
+                          <p class="card-text">
+                            <table class="table">
+                            <tbody>
+                              <tr>
+                                <td colspan="3"><img id="imgTable" src=""  class="rounded float-left" style="max-width:200px; margin:auto"/></td>
+                              </tr>
+                              <tr>
+                                <td>Pedro</td>
+                                <td>Perez</td>
+                                <td><button onclick="cargar('Clientes/misdepositos','Mis movimientos')" class="btn btn-primary">Actualizar datos </button></td>
+                              </tr>
+                              <tr>
+                                <td>Total de depósitos</td>
+                                <td>654</td>
+                              </tr>
+                              <tr>
+                                <td>Monto Acumulado</td>
+                                <td>8500</td>
+                              </tr>
+                              <tr>
+                                <td><button onclick="cargar('Clientes/misdepositos','Mis movimientos')" class="btn btn-primary">Depositar </button></td>
+                              </tr>
+                              <tr>
+                                <td><button onclick="cargar('Clientes/misdepositos','Mis movimientos')" class="btn btn-primary">Cerrar session </button></td>
+                              </tr>
+                            </table>
+                          </p>
+                        </div>
+
+                  </div>
+                </div>
+
+              </div><!-- datos personales -->
+
             </div>            
            </div>
          </div>
@@ -63,6 +117,7 @@
 
     $(document).ready(function(){     
        $("#foto_cargada").attr("src", "<?php echo $foto_guardada; ?>"  );
+       $("#imgTable").attr("src", "<?php echo $foto_guardada; ?>"  );       
        cargarOpciones();
        kendo.culture("en-US"); 
       $("#total_acumulado").html(kendo.toString(total, "n"));

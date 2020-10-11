@@ -101,3 +101,8 @@ body {
 .titulo-pagina {
 	margin-top: 50px;
 }
+.clearfix::after {
+	content: "";
+	clear: both;
+	display: table;
+  }
