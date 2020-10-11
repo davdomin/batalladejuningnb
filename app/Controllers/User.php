@@ -17,6 +17,7 @@ class User extends BaseController
 		$user = $userModel->where('deleted', 0)->where('email',$usuario)->where('clave',$password)->where('deleted','0')->where('aprobado','1')->first();
 		if ($user) {
 			$session->set(['cod_usuario' => $user["id"]]);
+
 		}
 		header('Content-Type: application/json');
 	    return json_encode($user);
@@ -73,7 +74,7 @@ class User extends BaseController
 			'login_path' => $login_path
 		];
 		$session->set(['cod_usuario' => -1]);
-		return view('backoffice/cerrar_sesion', $data);		
+		return view('backoffice/cerrar_sesion', $data);
 	}
 	public function guardar()	{
 		$userModel = new UserModel($db);
