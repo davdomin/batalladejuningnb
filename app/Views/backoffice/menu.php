@@ -24,7 +24,7 @@
 <body>
     <div id="top_menu">
      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <a class="navbar-brand" href="#">BJGNB</a>
+      <a class="navbar-brand" href="../Home/Index">BJGNB</a>
        <div class="nav-wrappers">
           <ul id="lista_menu" class='navbar-nav mr-auto'></ul>          
        </div> 
@@ -54,7 +54,7 @@
                         -->
                         <div class="card-body">
                           <h5 class="card-title">Saldo</h5>
-                          <h3 class="card-text">Bs. 65.00</h3>
+                          <h3 class="card-text">Bs. <?php echo $saldo_actual; ?></h3>
                           <button onclick="cargar('Clientes/misdepositos','Mis movimientos')" class="btn btn-primary">Ver detalle</button>
                         </div>
                       </div>
@@ -72,23 +72,21 @@
                                 <td colspan="3"><img id="imgTable" src=""  class="rounded float-left" style="max-width:200px; margin:auto"/></td>
                               </tr>
                               <tr>
-                                <td>Pedro</td>
-                                <td>Perez</td>
-                                <td><button onclick="cargar('Clientes/misdepositos','Mis movimientos')" class="btn btn-primary">Actualizar datos </button></td>
+                                <td><?php echo $nombre; ?></td>
+                                <td><?php echo $apellidos; ?></td>
+                                <td><button onclick="cargar('Clientes/actualizar','Actualizar datos')" class="btn btn-primary">Actualizar datos </button></td>
                               </tr>
                               <tr>
-                                <td>Total de depósitos</td>
-                                <td>654</td>
+                                <td>Total bloqueado</td>
+                                <td><?php echo $bloqueado; ?></td>
                               </tr>
                               <tr>
                                 <td>Monto Acumulado</td>
-                                <td>8500</td>
+                                <td><?php echo $saldo_actual; ?></td>
                               </tr>
                               <tr>
-                                <td><button onclick="cargar('Clientes/misdepositos','Mis movimientos')" class="btn btn-primary">Depositar </button></td>
-                              </tr>
-                              <tr>
-                                <td><button onclick="cargar('Clientes/misdepositos','Mis movimientos')" class="btn btn-primary">Cerrar session </button></td>
+                                <td><button onclick="cargar('Clientes/depositar','Depositar')" class="btn btn-primary">Depositar </button></td>
+                                <td><button onclick="cargar('user/cerrarSesion','Cerrar sesión')" class="btn btn-danger">Cerrar session </button></td>
                               </tr>
                             </table>
                           </p>

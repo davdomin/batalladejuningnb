@@ -13,11 +13,17 @@ class Home extends BaseController
 		$id_login = $session->get("cod_usuario") ?  $session->get("cod_usuario") :-1;
 		$clientesModel = new ClientesModel($db);
 		$cliente  =  $clientesModel->getByUser($id_login);
-
+		$cod_cliente  = $cliente["id"];
+		$saldo = $clientesModel->getSaldoPorCliente($cod_cliente);
+		$bloqueado = $clientesModel->getSaldoBloqueadoPorCliente($cod_cliente);
 		$data = array(
 			'id_login' => $id_login,
 			'total_acumulado' => $abonosModel->getTotalAbonos()	,
-			'foto_guardada' => '../upload/users/'. $cliente['foto']		
+			'foto_guardada' => '../upload/users/'. $cliente['foto'],
+			'nombre' => $cliente['nombres'],
+			'apellidos' => $cliente['apellidos'],
+			'saldo_actual'   => $saldo,
+			'bloqueado'=> $bloqueado
 			
 		);
 		return view('backoffice/menu',$data);
