@@ -24,7 +24,7 @@
 <body>
     <div id="top_menu">
      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <a class="navbar-brand" href="#">BJGNB</a>
+      <a class="navbar-brand" href="../Home/Index">BJGNB</a>
        <div class="nav-wrappers">
           <ul id="lista_menu" class='navbar-nav mr-auto'></ul>          
        </div> 
@@ -44,7 +44,59 @@
          <div class="form-group">
            <div id="pagina" >
             <div class="container-fluid">
-             <img src="../img/background.jpg" class="img-fluid img-centro">
+              <div id="dashboard" style="margin-top:50px; background-color:#fff; padding:10px; ">
+              <div class="row">
+                  <div class="col-sm-3">
+                    <div id="saldo">
+                      <div class="card" style="width: 18rem;">
+                      <!--
+                        <img class="card-img-top" src="../img/money.png" alt="Card image cap">
+                        -->
+                        <div class="card-body">
+                          <h5 class="card-title">Saldo</h5>
+                          <h3 class="card-text">Bs. <?php echo $saldo_actual; ?></h3>
+                          <button onclick="cargar('Clientes/misdepositos','Mis movimientos')" class="btn btn-primary">Ver detalle</button>
+                        </div>
+                      </div>
+                    </div> <!-- saldo -->
+                  </div>                
+                <div class="clearfix"></div>
+                <div class="col-sm-9">
+                  <div class="card" style="width: 38rem">
+                      <div class="card-body">
+                          <h3 class="card-title">Mis Datos</h3>
+                          <p class="card-text">
+                            <table class="table">
+                            <tbody>
+                              <tr>
+                                <td colspan="3"><img id="imgTable" src=""  class="rounded float-left" style="max-width:200px; margin:auto"/></td>
+                              </tr>
+                              <tr>
+                                <td><?php echo $nombre; ?></td>
+                                <td><?php echo $apellidos; ?></td>
+                                <td><button onclick="cargar('Clientes/actualizar','Actualizar datos')" class="btn btn-primary">Actualizar datos </button></td>
+                              </tr>
+                              <tr>
+                                <td>Total bloqueado</td>
+                                <td><?php echo $bloqueado; ?></td>
+                              </tr>
+                              <tr>
+                                <td>Monto Acumulado</td>
+                                <td><?php echo $saldo_actual; ?></td>
+                              </tr>
+                              <tr>
+                                <td><button onclick="cargar('Clientes/depositar','Depositar')" class="btn btn-primary">Depositar </button></td>
+                                <td><button onclick="cargar('user/cerrarSesion','Cerrar sesión')" class="btn btn-danger">Cerrar session </button></td>
+                              </tr>
+                            </table>
+                          </p>
+                        </div>
+
+                  </div>
+                </div>
+
+              </div><!-- datos personales -->
+
             </div>            
            </div>
          </div>
@@ -63,6 +115,7 @@
 
     $(document).ready(function(){     
        $("#foto_cargada").attr("src", "<?php echo $foto_guardada; ?>"  );
+       $("#imgTable").attr("src", "<?php echo $foto_guardada; ?>"  );       
        cargarOpciones();
        kendo.culture("en-US"); 
       $("#total_acumulado").html(kendo.toString(total, "n"));
