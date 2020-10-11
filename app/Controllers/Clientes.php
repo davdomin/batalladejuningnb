@@ -288,6 +288,8 @@ class Clientes extends BaseController
 		  'cod_datos_sexo' => $cod_sexo,
 		  'cod_datos_grupo' => $cod_grupo,
 		];		
+		$mail_admin = $datosModel->getDatosByKey ('MAIL_ADMIN')[0]->nombre;
+		$this->enviarMail("Registro", 'Se registro en el sistema con cedula $cedula y nombre $nombre $apellidos', $mail_admin);
 		return json_encode($clientesModel->insert($data));
 	}
 

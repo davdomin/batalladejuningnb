@@ -65,6 +65,11 @@ class ClientesModel extends Model
         $result = $this->db->query($sql);        
         return  $result->getResult();
     }
+    public function getUsuariosPendientes() {
+        $sql ="SELECT u.id AS cod_usuario,c.cedula as cedula ,u.name AS usuario FROM users u INNER JOIN  clientes c ON c.cod_usuario = u.id  WHERE u.aprobado = 0 AND u.deleted=0";        
+        $result = $this->db->query($sql);        
+        return  $result->getResult();
+    }
 
 
     public function getSaldoPorCliente($cod_cliente)
