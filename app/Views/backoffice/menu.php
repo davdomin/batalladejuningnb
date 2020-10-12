@@ -81,7 +81,7 @@
                                 <td><?php echo $bloqueado; ?></td>
                               </tr>
                               <tr>
-                                <td>Monto Acumulado</td>
+                                <td>Saldo</td>
                                 <td><?php echo $saldo_actual; ?></td>
                               </tr>
                               <tr>
