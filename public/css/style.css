@@ -106,3 +106,10 @@ body {
 	clear: both;
 	display: table;
   }
+
+
+  @media screen and (max-width: 751px) {
+	#imgLogo {
+		width: 50%
+	}
+  }

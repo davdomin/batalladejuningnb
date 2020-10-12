@@ -29,7 +29,7 @@
           
           <header class="header">
             <div class ="logo">
-              <img src="img/inicial.jpg" />
+              <img id ="imgLogo" src="img/inicial.jpg" />
             </div>
             <div class ="title">
               <h1>Batalla de Junin GNB</h1>   
