@@ -159,7 +159,7 @@ class Clientes extends BaseController
 		
 
 		$data = [
-		  'cod_cliente' => $cod_cliexnte,
+		  'cod_cliente' => $cod_cliente,
 		  'cod_datos_banco' => $cod_banco,
           'monto' => $monto,
 		  'referencia' => $referencia,
@@ -167,10 +167,9 @@ class Clientes extends BaseController
 		  'fecha_deposito' =>  date("Y-m-d", strtotime($fecha_deposito)),
 		];
 		$datosModel = new DatosModel($db);
-		$mail_admin = $datosModel->getDatosByKey ('MAIL_ADMIN')[0]->nombre;
+		$mail_admin = $datosModel->getDatosByKey ('MAIL_ADMIN')[0]->nombre;		
 		$this->enviarMail("Deposito", 'Se hizo un deposito', $mail_admin);
-		return json_encode($abonosModel->insert($data));
-		
+		return json_encode($abonosModel->insert($data));		
 	}
 	
 	public function guardar_retiro()	{
@@ -274,7 +273,8 @@ class Clientes extends BaseController
 		$data = [
 		  'name' => $nombreCompleto,
 		  'clave' =>$password,
-          'email'    => $email
+		  'email'    => $email,
+		  'cod_perfil'    => 3
 		];
 		$cod_usuario = $userModel->insert($data);
 		if ($cod_usuario == 0) return false;
