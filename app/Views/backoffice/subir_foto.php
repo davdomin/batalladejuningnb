@@ -19,6 +19,10 @@
                 let path ='../upload/users/' + res;
 
                 $("#foto_cargada").attr("src", path  );
+                alert('Foto cargada');
+                }
+                
+
         }
         }
     }); }); });
