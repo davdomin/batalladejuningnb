@@ -134,7 +134,7 @@
    function cargar(pagina, titulo) {
     pagina= '../'+pagina;    
     $("#pagina").load(pagina, ()=>{
-      $("#pagina").html( "<h2 class='titulo-pagina'>"+titulo+"</h2>"+ $("#pagina").html());
+      $("#pagina").html( "<h2 class='titulo-pagina' style='padding-top:30px'>"+titulo+"</h2>"+ $("#pagina").html());
     });    
    }
    
