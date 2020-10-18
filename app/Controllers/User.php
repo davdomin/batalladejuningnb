@@ -55,8 +55,7 @@ class User extends BaseController
 	public function upload() {
 		$session = session();
 		$file = $this->request->getFile('file');
-		$newName = $file->getRandomName();
-		
+		$newName = $file->getRandomName();		
 		if (!$file->move('./upload/users', $newName)) 
 			return  false;
 
