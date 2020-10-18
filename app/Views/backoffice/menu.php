@@ -2,7 +2,7 @@
 <html lang="es">
     <head>      
        <meta charset="utf-8"/>       
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <!--Import Google Icon Font-->
       <!--Let browser know website is optimized for mobile-->
          <script  src="https://code.jquery.com/jquery-3.5.1.min.js"   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="  crossorigin="anonymous"></script>      
@@ -24,14 +24,24 @@
 <body>
     <div id="top_menu">
      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <a class="navbar-brand" href="../Home/Index">BJGNB</a>
-       <div class="nav-wrappers">
-          <ul id="lista_menu" class='navbar-nav mr-auto'></ul>          
-       </div> 
+
+      <a class="navbar-brand" href="../Home/Index">BJGNB</a>      
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <div class="nav-wrappers">
+            <ul id="lista_menu" class='navbar-nav mr-auto mt-2 mt-lg-0'></ul>          
+        </div> 
+       </div>
        <div id='cargar_imagen'>
           <img id ="foto_cargada" class="rounded-circle"/>
       </div>
-       <div id="info_tope" class="importante"> Monto Acumulado : <div id="total_acumulado"></div> </div>
+       <div id="info_tope" class="importante"> Saldo Acumulado : <?php 
+          $f = new \NumberFormatter("it-IT", \NumberFormatter::CURRENCY);
+          echo $f->formatCurrency(12345, "USD")
+         ?></div>
       </nav>
     </div>
 
@@ -41,12 +51,12 @@
           <div class="alert alert-success" id="msj_html">          
         </div>
        </div>
-         <div class="form-group">
+         <div class="form-group"> 
            <div id="pagina" >
             <div class="container-fluid">
               <div id="dashboard" style="margin-top:50px; background-color:#fff; padding:10px; ">
               <div class="row">
-                  <div class="col-sm-3">
+                  <div id ="divSaldo" class="col-sm">
                     <div id="saldo">
                       <div class="card" style="width: 18rem;">
                       <!--
@@ -61,8 +71,8 @@
                     </div> <!-- saldo -->
                   </div>                
                 <div class="clearfix"></div>
-                <div class="col-sm-9">
-                  <div class="card" style="width: 38rem">
+                <div class="col-sm">
+                  <div class="card">
                       <div class="card-body">
                           <h3 class="card-title">Mis Datos</h3>
                           <p class="card-text">
@@ -104,7 +114,7 @@
 
 
 <script>
-  var total = <?php echo $total_acumulado ? $total_acumulado: 0; ?>;
+ // var total = <?php echo $total_acumulado ? $total_acumulado: 0; ?>;
   var login_path = '<?php echo env('index_url') ?>';
   var id_login = <?php echo $id_login ?>;
   

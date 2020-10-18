@@ -1,4 +1,3 @@
-
 <div>
      <div class="form-group">
           <label for="txtCedula">Cédula :</label>

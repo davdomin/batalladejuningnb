@@ -111,5 +111,9 @@ body {
   @media screen and (max-width: 751px) {
 	#imgLogo {
 		width: 50%
+	}	
+	#divSaldo {
+		
 	}
+
   }
