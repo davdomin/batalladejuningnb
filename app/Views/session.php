@@ -3,7 +3,7 @@
 <div class="row">
     <div class="row">
         <div class="input-field col s10">
-        <input placeholder="Placeholder" id="txtUsuario" type="text" class="validate k-textbox">
+        <input placeholder="Usuario" id="txtUsuario" type="text" class="validate k-textbox">
         <label for="txtUsuario">Usuario</label>
         </div>
     </div>
