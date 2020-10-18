@@ -276,6 +276,7 @@ class Clientes extends BaseController
 		  'email'    => $email,
 		  'cod_perfil'    => 3
 		];
+		
 		$cod_usuario = $userModel->insert($data);
 		if ($cod_usuario == 0) return false;
 		$data = [
@@ -289,7 +290,8 @@ class Clientes extends BaseController
 		  'cod_datos_grupo' => $cod_grupo,
 		];
 		$datosModel = new DatosModel($db);
-		$mail_admin = $datosModel->getDatosByKey ('MAIL_ADMIN')[0]->nombre;
+		$mail_admin = $datosModel->getDatosByKey ('MAIL_ADMIN')[0]->nombre;		
+		var_dump($mail_admin); die();
 		$this->enviarMail("Registro", 'Se registro en el sistema con cedula $cedula y nombre $nombre $apellidos', $mail_admin);
 		return json_encode($clientesModel->insert($data));
 	}
