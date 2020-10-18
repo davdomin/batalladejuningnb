@@ -291,7 +291,6 @@ class Clientes extends BaseController
 		];
 		$datosModel = new DatosModel($db);
 		$mail_admin = $datosModel->getDatosByKey ('MAIL_ADMIN')[0]->nombre;		
-		var_dump($mail_admin); die();
 		$this->enviarMail("Registro", 'Se registro en el sistema con cedula $cedula y nombre $nombre $apellidos', $mail_admin);
 		return json_encode($clientesModel->insert($data));
 	}
