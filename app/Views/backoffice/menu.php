@@ -128,7 +128,7 @@
        $("#imgTable").attr("src", "<?php echo $foto_guardada; ?>"  );       
        cargarOpciones();
        kendo.culture("en-US"); 
-      $("#total_acumulado").html(kendo.toString(total, "n"));
+     // $("#total_acumulado").html(kendo.toString(total, "n"));
     });   
 
    function cargar(pagina, titulo) {

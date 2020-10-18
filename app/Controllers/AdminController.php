@@ -26,7 +26,7 @@ class AdminController extends BaseController
 		return $userModel->aprobar($cod_usuario);
 	}
 	public function rechazarUnUsuario() {
-		header('Content-Type: application/json');
+		header('Content-Type: application/json');		
 		$session = session();
 		$userModel = new UserModel($db);
 		$cod_usuario = $_POST['cod_usuario'];
