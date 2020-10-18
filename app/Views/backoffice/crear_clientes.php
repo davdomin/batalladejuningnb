@@ -38,6 +38,7 @@
             </div>
     </fieldset>
     <button id="btnGuardar" class='btn-primary'>Guardar</button>    
+    <button id="btnVolver" class='btn-primary'>Volver</button>    
 
 </div>
 
@@ -65,6 +66,11 @@ function onClick() {
 }
 $(function() { //Cuando la pagina termina de cargar    
     $("#fecha").kendoDatePicker();    
+    $("#btnVolver").kendoButton({
+        click: () =>{
+            $("#content").load('./Home/session');
+        }
+    });
     $("#btnGuardar").kendoButton({
         click: onClick
     });
