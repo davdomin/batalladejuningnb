@@ -1,13 +1,12 @@
-
 <div>
     <div class='form-group'>
         <!--<label for=''>Cliente :</label>
         <div style='font-weight: bold;'> </div> -->
-        <label for='txtCodcliente'>Cliente :</label>
-        <input id='txtCodcliente' type='text'>
+        <label for='txtCodcliente' style="width: 100%;">Cliente :</label>
+        <input id='txtCodcliente' style="width: 100%" class='form-control'>
     </div>
 
-    
+
     <div class='form-group'>
         <label for='txtSaldo'>Saldo Disponible :</label>
         <div id='txtSaldo'></div>
@@ -30,49 +29,50 @@
 </div>
 
 <script type='text/javascript'>
-var saldo =<?php echo $saldo ? $saldo: 0; ?> ;
-var cod_cliente =0;
+var saldo = <?php echo $saldo ? $saldo: 0; ?>;
+var cod_cliente = 0;
 var locked = false;
 $("#txtCodcliente").kendoAutoComplete({
-    dataTextField: "nombrecompleto",        
+    dataTextField: "nombrecompleto",
     filter: "contains",
+    width:"100%",
     minLength: 2,
     clearButton: true,
     placeholder: "Selecciona Cliente",
     dataSource: {
         transport: {
-            read: {                    
+            read: {
                 url: "../Clientes/getAll",
-                dataType: "json",                            
+                dataType: "json",
             },
-        },                    
+        },
     },
     select: function(e) {
-        kendo.culture("en-US"); 
+        kendo.culture("en-US");
         var dataItem = this.dataItem(e.item.index());
-        cod_cliente = dataItem.id;        
-        $.get('../Clientes/getSaldo', { 
+        cod_cliente = dataItem.id;
+        $.get('../Clientes/getSaldo', {
             cod_cliente: cod_cliente,
-        }).done(function( data ) {
+        }).done(function(data) {
             data = $.parseJSON(data);
-            saldo= data.saldo;            
+            saldo = data.saldo;
             $("#txtSaldo").html(kendo.toString(parseFloat(saldo), "n"));
 
-            
+
         });
 
-        
-      },
-      change: (e)=>{        
-          if(!e.sender.element[0].value) {
-              cod_cliente = 0;
-          }
-      },
+
+    },
+    change: (e) => {
+        if (!e.sender.element[0].value) {
+            cod_cliente = 0;
+        }
+    },
 });
 
 function validar() {
     monto = parseFloat($('#txtMonto').val());
-    var result = true;    
+    var result = true;
     if (!$.isNumeric(monto)) {
         result = false;
     }
@@ -86,25 +86,25 @@ function validar() {
 
 function onClick(event) {
     event.preventDefault();
-    if (!validar()) {        
+    if (!validar()) {
         return;
-    }     
-    
+    }
+
     $('#btnGuardarRetiro').data('kendoButton').enable(false);
-    $.post( '../Clientes/guardar_retiro', { 
+    $.post('../Clientes/guardar_retiro', {
         cod_cliente: cod_cliente,
-        monto:    $('#txtMonto').val(),
+        monto: $('#txtMonto').val(),
         observaciones: $('#txtObservaciones').val()
-    }).done(function( data ) {
+    }).done(function(data) {
         data = $.parseJSON(data);
-        mensaje('Retiros','Retiro registrado');        
-        
+        mensaje('Retiros', 'Retiro registrado');
+
     });
-    $('#txtMonto').val('-'); 
+    $('#txtMonto').val('-');
 }
 $(function() {
-    saldo = 0;
-    kendo.culture('en-US'); 
+    let saldo = 0;
+    kendo.culture('en-US');
     $('#txtSaldo').val(kendo.toString(saldo, 'n'));
     $('#dtfecha').kendoDatePicker({
         // defines the start view
@@ -122,5 +122,4 @@ $(function() {
         click: onClick
     });
 });
-
 </script>

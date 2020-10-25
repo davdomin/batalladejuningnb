@@ -9,7 +9,7 @@ use App\Models\AbonosModel;
 class Clientes extends BaseController
 {
 	public function getAll() {
-		h.eader('Content-Type: application/json');
+		header('Content-Type: application/json');
 		$clientesModel = new ClientesModel();
 		return json_encode($clientesModel->getAll());
 	}
@@ -111,7 +111,7 @@ class Clientes extends BaseController
     		'nombre_usuario' => $user['name'],
     		'cod_usuario' 	 => $cod_usuario,
     		'cod_cliente' 	 => $cliente["id"],
-    		'saldo' => $saldo
+    		'saldo' => $clientesModel->getSaldoPorCliente($cliente["id"])
 		);
 
 		return view('retirar',$data);
