@@ -32,7 +32,6 @@
               <img id ="imgLogo" src="img/inicial.jpg" />
             </div>
             <div class ="title">
-              <h1>Batalla de Junin GNB</h1>   
             </div>
           </header>        
 

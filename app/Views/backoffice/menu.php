@@ -42,9 +42,10 @@
             <div id='cargar_imagen'>
                 <img id="foto_cargada" class="rounded-circle" />
             </div>
-            <div id="info_tope" class="importante"> Saldo Acumulado : <?php 
+            <div id="info_tope" class="importante"> Saldo Acumulado : 
+            <?php 
           $f = new \NumberFormatter("it-IT", \NumberFormatter::CURRENCY);
-          echo $f->formatCurrency(12345, "USD")
+          echo $f->formatCurrency($total_acumulado, "USD")
          ?></div>
         </nav>
     </div>
@@ -68,7 +69,10 @@
                         -->
                                         <div class="card-body">
                                             <h5 class="card-title">Saldo</h5>
-                                            <h3 class="card-text">Bs. <?php echo $saldo_actual; ?></h3>
+                                            <h3 class="card-text"><?php 
+          $f = new \NumberFormatter("it-IT", \NumberFormatter::CURRENCY);
+          echo $f->formatCurrency($saldo_actual, "USD")
+         ?></h3>
                                             <button onclick="cargar('Clientes/misdepositos','Mis movimientos')"
                                                 class="btn btn-primary">Ver detalle</button>
                                         </div>
@@ -96,11 +100,19 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Total bloqueado</td>
-                                                    <td><?php echo $bloqueado; ?></td>
+                                                    <td>                                            <?php 
+          $f = new \NumberFormatter("it-IT", \NumberFormatter::CURRENCY);
+          echo $f->formatCurrency($bloqueado, "USD")
+         ?></td>
+
+        
                                                 </tr>
                                                 <tr>
                                                     <td>Saldo</td>
-                                                    <td><?php echo $saldo_actual; ?></td>
+                                                    <td>                                            <?php 
+          $f = new \NumberFormatter("it-IT", \NumberFormatter::CURRENCY);
+          echo $f->formatCurrency($saldo_actual, "USD")
+         ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td><button onclick="cargar('Clientes/depositar','Depositar')"
@@ -170,7 +182,7 @@
             $("#li" + item.id).append("<ul id='" + childtag + "' class='dropdown-content'> </ul>");
 
             $.post("../User/getOpcionesMenu", {
-                cod_usuario: id_login,
+                    cod_usuario: id_login,
                 cod_padre: item.id
             }, function(data) {
                 $.each(data, function(key, child) {

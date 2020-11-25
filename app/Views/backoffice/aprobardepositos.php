@@ -13,6 +13,7 @@
                 })
                 .done(function( data ) {
                     mensaje('Aprobacion','Proceso completado');
+                    location.reload();
                     $("#grid_depositos").data("kendoGrid").dataSource.read();
                     
             });        

@@ -50,6 +50,7 @@ function btnGuardar_onClick() {
         data = $.parseJSON(data);
         mensaje('Abonos','Deposito registrado');
         $('#btnGuardar').data('kendoButton').enable(true);
+        location.reload();
         
     });        
 
