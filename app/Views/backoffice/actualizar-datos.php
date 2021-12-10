@@ -7,6 +7,9 @@
                <div class="spacer"></div>
                <label for="txtNombre">Nombres:</label>
                <input id="txtNombre" class="form-control input-sm" readonly>
+               <label for="txtEmail">Correo electrónico:</label>
+               <input id="txtEmail" class="form-control input-sm" readonly>
+
           </div>
      </fieldset>
      <fieldset>
@@ -235,6 +238,7 @@
           $("#hdnCliente").val('<?php echo $cod_cliente; ?>')
           $("#txtCedula").val('<?php echo $cedula; ?>')
           $("#txtNombre").val('<?php echo $nombres; ?>')
+          $("#txtEmail").val('<?php echo $cliente['email']; ?>')          
           $("#cmbGrupo").data('kendoComboBox').value(<?php echo $cliente['cod_datos_grupo'] ?>)
           $("#cmbJerarquia").data('kendoComboBox').value(<?php echo $cliente['cod_datos_jerarquia'] ?>)
           $("#cmbNacimiento").data('kendoComboBox').value(<?php echo $cliente['cod_datos_lugar_nac'] ?>)
@@ -255,7 +259,7 @@
           $("#txtConyugue").val('<?php echo $cliente['conyuge'] ?>')
           $("#txtPadre").val('<?php echo $cliente['padre'] ?>')
           $("#txtMadre").val('<?php echo $cliente['madre'] ?>')
-          $("#txtDireccionEmergencia").val('<?php echo $cliente['direccion_emergencia'] ?>')
+          $("#txtDireccionEmergencia").val('<?php echo $cliente['direccion_emergencia'] ?>')          
      }
 
      function onClick() {
@@ -286,7 +290,7 @@
                madre: $("#txtMadre").val(),
                direccion_emergencia: $("#txtDireccionEmergencia").val(),
           }).done(function(data) {
-               data = $.parseJSON(data);
+               data = $.parseJSON(data);               
                mensaje('Actualizacion', 'Actualizacion completada');
                $('#btnGuardar').data('kendoButton').enable(true);
           });

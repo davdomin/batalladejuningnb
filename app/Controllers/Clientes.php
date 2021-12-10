@@ -56,11 +56,27 @@ class Clientes extends BaseController
 		$cod_usuario = $session->get("cod_usuario");
 		$userModel = new UserModel($db);
 		$user = $userModel->getById($cod_usuario);
-		$cliente  = $clientesModel->getByUser($cod_usuario);
+		$cliente  = $clientesModel->getByUser($cod_usuario);		
+		$cliente['email']= $user['email'];
 		$data = array(
 			'cod_cliente' => $cliente["id"],
 			'cedula'	  => $cliente["cedula"],
 			'nombres' 	  => $cliente["nombres"] . ' ' . $cliente["apellidos"],
+			'cliente'     => $cliente
+		);
+		return view('backoffice/actualizar-datos', $data);
+	}
+	public function ver($id)	{		
+		$userModel = new UserModel($db);
+		$clientesModel = new ClientesModel();
+		$cod_usuario = $id;		
+		$user = $userModel->getById($cod_usuario);
+		$cliente  = $clientesModel->getByUser($cod_usuario);		
+		$cliente['email']= $user['email'];
+		$data = array(
+			'cod_cliente' => $cliente["id"],
+			'cedula'	  => $cliente["cedula"],
+			'nombres' 	  => $cliente["nombres"] . ' ' . $cliente["apellidos"],			
 			'cliente'     => $cliente
 		);
 		return view('backoffice/actualizar-datos', $data);

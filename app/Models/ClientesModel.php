@@ -15,8 +15,6 @@ class ClientesModel extends Model
         'cod_datos_cargo', 'cod_datos_grado', 'especialidad', 'unidad', 'fecha_asc', 'estatura',
         'peso', 'cod_datos_camisa',  'cod_datos_pantalon',  'cod_datos_calzado', 'cod_datos_gorra',
         'cod_datos_estado_civil', 'conyuge', 'padre', 'madre', 'direccion_emergencia', 'foto'
-
-
     ];
 
    public function __construct(){
@@ -29,9 +27,8 @@ class ClientesModel extends Model
         $cliente = $this->where('cod_usuario',$cod_usuario)->first();
         return $cliente;
     }
-
     public function getAll() {
-        $sql="SELECT id,cedula,nombres,apellidos, CONCAT(nombres,' ',apellidos) as nombrecompleto FROM clientes";
+        $sql="SELECT id,cod_usuario,cedula,nombres,apellidos, CONCAT(nombres,' ',apellidos) as nombrecompleto FROM clientes";
         $query= $this->db->query($sql);
         return $query->getResult();
     }

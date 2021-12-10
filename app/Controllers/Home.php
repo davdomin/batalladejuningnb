@@ -8,8 +8,7 @@ class Home extends BaseController
 {
 	public function index()	{
 		$session = session();
-		$abonosModel = new AbonosModel();
-		
+		$abonosModel = new AbonosModel();		
 		$id_login = $session->get("cod_usuario") ?  $session->get("cod_usuario") :-1;
 		$clientesModel = new ClientesModel($db);
 		$cliente  =  $clientesModel->getByUser($id_login);

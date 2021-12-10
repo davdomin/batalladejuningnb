@@ -21,7 +21,13 @@ class UserModel extends Model
     protected $validationMessages = [];
     protected $skipValidation     = false;
     
-
+    public function getLogin($cedula, $password)
+    {
+		$sql ="SELECT u.* FROM users u INNER JOIN clientes c ON u.id= c.cod_usuario WHERE c.cedula='$cedula' AND u.clave='$password'";
+		//	echo $sql; die();
+        $result = $this->db->query($sql);
+        return $result->getResult()[0];
+    }
     public function getOpciones($cod_padre, $cod_usuario)
     {        
         $sql ="SELECT  

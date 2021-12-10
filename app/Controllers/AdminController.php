@@ -8,7 +8,9 @@ use App\Models\AbonosModel;
 class AdminController extends BaseController
 {
 		
-
+	public function verTodos() {
+		return view('backoffice/vertodos');
+	}
 	public function aprobarDepositos() {
 		return view('backoffice/aprobardepositos');
 	}
@@ -54,6 +56,12 @@ class AdminController extends BaseController
 		$clientesModel = new ClientesModel($db);
 		return json_encode($clientesModel->getDepositosEstado($abonosModel->getEstadoPendiente()));
 	}
+	public function getListaUsuarios(){
+		header('Content-Type: application/json');		
+		$clientesModel = new ClientesModel($db);
+		return json_encode($clientesModel->getAll());
+	}
+
 	public function getUsuariosPendientes(){
 		header('Content-Type: application/json');			
 		$clientesModel = new ClientesModel($db);		

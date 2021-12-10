@@ -12,13 +12,12 @@ class User extends BaseController
 	public function sesion() {
 		$session = session();
 		$userModel = new UserModel($db);
-		$usuario  = $_POST['usuario'];
+		$cedula  = $_POST['cedula'];
 		$password = $_POST['password'];
-		$user = $userModel->where('deleted', 0)->where('email',$usuario)->where('clave',$password)->where('deleted','0')->where('aprobado','1')->first();
+		$user = $userModel->getLogin($cedula, $password);
 		if ($user) {
-			$session->set(['cod_usuario' => $user["id"]]);
-
-		}
+		   $session->set(['cod_usuario' => $user->id]);
+		} 
 		header('Content-Type: application/json');
 	    return json_encode($user);
 	}
